@@ -1,0 +1,29 @@
+﻿/* Style of buttons with preset locations */
+.mapBtn { 
+	border-style:solid;
+	border-width:1px;
+	margin: 20px;
+	cursor: pointer;
+	}
+.src { background-color: green;}
+.dest { background-color: red; }
+.selected { background-color: lightgray;}
+
+/* Style of containers */
+.centerLocationContainer {}
+.mapContainer {
+	height:300px;
+	width:500px;
+	position:relative;		/*required*/
+	float:left;				/*required*/
+}
+.coordinateContainer {
+	position: relative;		/*required*/
+	float: left;			
+}
+.crosshair {
+	z-index: 10;			/*required*/
+	left: 48%;				/*move as necessary*/
+	top: 51%;				/*move as necessary*/
+	position: absolute;		/*required*/
+}
