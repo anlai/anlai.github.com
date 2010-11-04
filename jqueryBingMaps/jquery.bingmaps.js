@@ -172,6 +172,7 @@
             function Route(veMap, start, end) {
                 var options = new VERouteOptions();
                 options.RouteMode = settings.routeMode;
+				options.RouteCallback = function(routeSteps){debugger;};
                 veMap.GetDirections([start, end], options);
             }
 

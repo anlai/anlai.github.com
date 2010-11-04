@@ -1,0 +1,21 @@
+﻿/* Style of buttons with preset locations */
+.map-button { 
+	border-style:solid;
+	border-width:1px;
+	margin: 20px;
+	cursor: pointer;
+	}
+.src { background-color: green;}
+.dest { background-color: red; }
+.selected { background-color: lightgray;}
+
+.crosshair {
+	z-index: 10;			/*required*/
+	left: 48%;				/*move as necessary*/
+	top: 51%;				/*move as necessary*/
+	position: absolute;		/*required*/
+}
+
+/* Style of containers */
+.coordinate-container{}
+.location-container{}

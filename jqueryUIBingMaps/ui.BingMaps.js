@@ -16,7 +16,9 @@
 			displayLongitudeControl: undefined, /* control to set longitude if you have a specific control to put the coordinate in */
 			crosshairLocation: "crosshair.gif", /* location of the crosshair image file */
 			displayZoom: false,                 /* displays the current zoom level */
-			displayZoomControl: undefined       /* control to set zoom if you have a specific control to put the zoom level in */
+			displayZoomControl: undefined,      /* control to set zoom if you have a specific control to put the zoom level in */
+			displaySearch: false				/* displays search controls */
+			
 		},
 		_create: function() {
 			this.id = this.element.attr("id");
@@ -25,8 +27,14 @@
 			this.coordinates = this._formatCoordinates(this.container.children("div"));
 			this.map = $("<div>").attr("id", this._randomId()).css("position", "relative").css("width", this.options.width).css("height", this.options.height).addClass("map-container").prependTo(this.container);
 			this.location = $("<div>").addClass("location-container").appendTo(this.container);
+			this.searchContainer = $("<div>").addClass("search-container").appendTo(this.container);
+			this.searchBox = $("<input>").attr("type", "text").appendTo(this.searchContainer);
+			this.searchButton = $("<input>").attr("type", "button").val("Search").appendTo(this.searchContainer);
 		
 			this._initializeMap();
+			this._registerMapButtonClick();
+			if (this.options.displayCurrentLocation || this.options.displayZoom) this._registerMapChange();
+			if (this.options.displaySearch) this._registerSearch();
 		},
 		_formatCoordinates: function($coordinateContainer /* div holding dl */){
 			$coordinateContainer.addClass("coordinate-container");
@@ -65,12 +73,15 @@
 			{
 				this._handleRouting($button, veLocation, vePin);
 			}
-			
-			
+			else
+			{
+				$button.addClass("selected");
+			}
+
 			this.veMap.AddPushpin(vePin);
+			$button.attr("pinId", vePin.ID);
 		},
 		_handleRouting: function($button, veLocation, vePin) {
-
 			var src = this.coordinates.find("div.src");
 			var dest = this.coordinates.find("div.dest");
 			
@@ -94,12 +105,80 @@
 				return;
 			}
 
-			$button.attr("pinId", vePin.ID);
-			
 			if (src.length > 0 && dest.length > 0)
 			{
-				var start = src.
+				var start = new VELatLong(src.attr("lat"), src.attr("lng"));
+				var end = new VELatLong(dest.attr("lat"), dest.attr("lng"));
+				this._route(start, end);				
 			}
+		},
+		_registerMapButtonClick: function() {
+			var that = this;
+			this.coordinates.find("div.map-button").click(function(){
+				if (!$(this).hasClass("src") && !$(this).hasClass("dest") && !$(this).hasClass("selected"))
+				{
+					that._addPushPin($(this));
+				}
+				else
+				{
+					that.veMap.DeletePushpin($(this).attr("pinId"));
+                    $(this).removeAttr("pinId");
+                    $(this).removeClass("src dest selected");
+                    that.veMap.DeleteRoute();
+				}
+			});			
+		},
+		_registerMapChange: function(){
+			var that = this;
+		
+			this.veMap.AttachEvent("onchangeview", function() {
+
+				var displayInformation = "";
+
+				if (that.options.displayCurrentLocation) {
+					var center = that.veMap.GetCenter();
+					displayInformation = "Coordinates:" + center.Latitude + "," + center.Longitude;
+
+					if (that.options.displayLongitudeControl != undefined && that.options.displayLatitudeControl != undefined) {
+						$("#" + that.options.displayLongitudeControl).val(center.Longitude);
+						$("#" + that.options.displayLatitudeControl).val(center.Latitude);
+
+						displayInformation = "";
+					}
+				}
+
+				if (that.options.displayZoom) {
+					var zoom = veMap.GetZoomLevel();
+					
+					if (that.options.displayZoomControl != undefined) {
+						$("#" + that.options.displayZoomControl).val(zoom);
+					}
+					else {
+						displayInformation = displayInformation + "<br/>Zoom: " + zoom;
+					}
+				}
+
+				if (displayInformation != "") that.location.html(displayInformation);
+			});
+
+			// draw crosshairs
+			var crosshair = $("<img>").attr("src", this.options.crosshairLocation).addClass("crosshair");
+
+			$("div#" + this.veMap.ID).append(crosshair);
+		},
+		_registerSearch: function(){
+			var that = this;
+			
+			this.searchButton.click(function(){
+				try{
+				that.veMap.Find(null, that.searchBox.val());
+				} catch (e) { alert(e);}
+			});
+		},
+		_route: function (start, end){
+			var options = new VERouteOptions();
+			options.RouteMode = this.options.routeMode;
+			this.veMap.GetDirections([start, end], options);
 		},
 		_randomId: function() {
 			var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";

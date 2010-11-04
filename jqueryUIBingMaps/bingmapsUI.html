@@ -21,8 +21,7 @@
 			}
 		</style>
 	
-		<style type="text/css">
-		</style>
+		<link href="ui.bingmaps.css" rel="stylesheet" type="text/css" />
 	
 		<script src="https://www.google.com/jsapi" type="text/javascript"></script>
 		<script type="text/javascript">
@@ -35,7 +34,7 @@
 	
 		<script type="text/javascript">
 			$(function(){
-				$("#map").bingmaps();
+				$("#map").bingmaps({enableRouting: false, displayCurrentLocation: false, displayZoom: false, displaySearch: false});
 			});
 		</script>
 	
