@@ -150,7 +150,7 @@
 				}
 
 				if (that.options.displayZoom) {
-					var zoom = veMap.GetZoomLevel();
+					var zoom = that.veMap.GetZoomLevel();
 					
 					if (that.options.displayZoomControl != undefined) {
 						$("#" + that.options.displayZoomControl).val(zoom);
