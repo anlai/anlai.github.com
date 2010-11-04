@@ -21,8 +21,6 @@
 			
 		},
 		_create: function() {
-			debugger;
-
 			this.id = this.element.attr("id");
 			this.container = this.element;
 		
