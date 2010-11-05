@@ -17,24 +17,41 @@
 			crosshairLocation: "crosshair.gif", /* location of the crosshair image file */
 			displayZoom: false,                 /* displays the current zoom level */
 			displayZoomControl: undefined,      /* control to set zoom if you have a specific control to put the zoom level in */
-			displaySearch: false				/* displays search controls */
-			
+			displaySearch: false,				/* displays search controls */
+			locationTitle: "Current Location",
+			searchTitle: "Search",
+			coordinateTitle: "Locations"
 		},
 		_create: function() {
 			this.id = this.element.attr("id");
 			this.container = this.element;
 		
 			this.coordinates = this._formatCoordinates(this.container.children("div"));
-			this.map = $("<div>").attr("id", this._randomId()).css("position", "relative").css("width", this.options.width).css("height", this.options.height).addClass("map-container").prependTo(this.container);
-			this.location = $("<div>").addClass("location-container").appendTo(this.container);
-			this.searchContainer = $("<div>").addClass("search-container").appendTo(this.container);
-			this.searchBox = $("<input>").attr("type", "text").appendTo(this.searchContainer);
-			this.searchButton = $("<input>").attr("type", "button").val("Search").appendTo(this.searchContainer);
-		
+			this.coordinatesTitle = $("<div>").addClass("coordinate-title").html(this.options.coordinateTitle).prependTo(this.coordinates);
+			this.mapContainer = $("<div>").attr("id", this._randomId()).addClass("map-container").prependTo(this.container);
+			this.map = $("<div>").attr("id", this._randomId()).css("position", "relative").css("width", this.options.width).css("height", this.options.height).addClass("map").appendTo(this.mapContainer);
+
+
 			this._initializeMap();
+			// registers button events for predefined locations
 			this._registerMapButtonClick();
-			if (this.options.displayCurrentLocation || this.options.displayZoom) this._registerMapChange();
-			if (this.options.displaySearch) this._registerSearch();
+			// register event for map to show current location/zoom
+			if (this.options.displayCurrentLocation || this.options.displayZoom) {
+				this.locationContainer = $("<div>").addClass("location-container").appendTo(this.container);
+				this.locationTitle = $("<div>").addClass("location-title").prependTo(this.locationContainer);
+				this.location = $("<div>").addClass("location").appendTo(this.locationContainer);
+				
+				this._registerMapChange();
+			}
+			// register event for allowing search
+			if (this.options.displaySearch) {
+				this.searchContainer = $("<div>").addClass("search-container").appendTo(this.container);
+				this.searchTitle = $("<div>").addClass("search-title").prependTo(this.searchContainer);
+				this.searchBox = $("<input>").attr("type", "text").appendTo(this.searchContainer);
+				this.searchButton = $("<input>").attr("type", "button").val("Search").appendTo(this.searchContainer);
+			
+				this._registerSearch();
+			}
 		},
 		_formatCoordinates: function($coordinateContainer /* div holding dl */){
 			$coordinateContainer.addClass("coordinate-container");
@@ -42,8 +59,7 @@
 			
 			return $coordinateContainer;
 		},
-		_initializeMap: function()
-		{
+		_initializeMap: function() {
 			var mapId = this.map.attr("id");
 			
 			var veMap = new VEMap(mapId);
@@ -131,13 +147,15 @@
 		_registerMapChange: function(){
 			var that = this;
 		
+			this.locationTitle.html(this.options.locationTitle);
+		
 			this.veMap.AttachEvent("onchangeview", function() {
 
 				var displayInformation = "";
 
 				if (that.options.displayCurrentLocation) {
 					var center = that.veMap.GetCenter();
-					displayInformation = "Coordinates:" + center.Latitude + "," + center.Longitude;
+					displayInformation = "Coordinates: " + center.Latitude + ", " + center.Longitude;
 
 					if (that.options.displayLongitudeControl != undefined && that.options.displayLatitudeControl != undefined) {
 						$("#" + that.options.displayLongitudeControl).val(center.Longitude);
@@ -168,7 +186,7 @@
 		},
 		_registerSearch: function(){
 			var that = this;
-			
+			this.searchTitle.html(this.options.searchTitle);
 			this.searchButton.click(function(){
 				try{
 				that.veMap.Find(null, that.searchBox.val());

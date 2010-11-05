@@ -4,6 +4,8 @@
 	border-width:1px;
 	margin: 20px;
 	cursor: pointer;
+	-moz-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
 	}
 .src { background-color: green;}
 .dest { background-color: red; }
@@ -17,5 +19,30 @@
 }
 
 /* Style of containers */
-.coordinate-container{}
-.location-container{}
+.map-container{
+	float:left;
+}
+.coordinate-container{
+	float:left;
+	margin: 0px 50px;
+}
+.coordinate-title {
+	font-weight: bold;
+	border-bottom: 1px solid lightgrey;
+}
+.location-container{
+	width: 500px;
+}
+.location-title{
+	font-weight: bold;
+	border-bottom: 1px solid lightgrey;
+	margin: 0px 0px 10px;
+}
+.search-container{
+	width:500px;
+}
+.search-title{
+	font-weight: bold;
+	border-bottom: 1px solid lightgrey;
+	margin: 0px 0px 10px;
+}
