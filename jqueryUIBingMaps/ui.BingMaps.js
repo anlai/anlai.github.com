@@ -84,18 +84,23 @@
 			var vePin = new VEPushpin(pushPinId, veLocation, null, title, description);
 			
 			// determine what to do with the map, whether routing or not
+			var addPin = true;
 			
 			if (this.options.enableRouting)
 			{
-				this._handleRouting($button, veLocation, vePin);
+				addPin = this._handleRouting($button, veLocation, vePin);
 			}
 			else
 			{
 				$button.addClass("selected");
+
 			}
 
-			this.veMap.AddPushpin(vePin);
-			$button.attr("pinId", vePin.ID);
+			if (addPin) {
+				this.veMap.AddPushpin(vePin);
+				$button.attr("pinId", vePin.ID);			
+			}
+			
 		},
 		_handleRouting: function($button, veLocation, vePin) {
 			var src = this.coordinates.find("div.src");
@@ -118,7 +123,7 @@
 			else
 			{
 				alert("Source and destination have already been selected.");
-				return;
+				return false;
 			}
 
 			if (src.length > 0 && dest.length > 0)
@@ -127,6 +132,8 @@
 				var end = new VELatLong(dest.attr("lat"), dest.attr("lng"));
 				this._route(start, end);				
 			}
+			
+			return true;
 		},
 		_registerMapButtonClick: function() {
 			var that = this;
