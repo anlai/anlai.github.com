@@ -37,9 +37,13 @@
 			this._registerMapButtonClick();
 			// register event for map to show current location/zoom
 			if (this.options.displayCurrentLocation || this.options.displayZoom) {
-				this.locationContainer = $("<div>").addClass("location-container").appendTo(this.container);
-				this.locationTitle = $("<div>").addClass("location-title").prependTo(this.locationContainer);
-				this.location = $("<div>").addClass("location").appendTo(this.locationContainer);
+				
+				if (this.options.displayLatitudeControl == undefined && this.options.displayLongitudeControl == undefined) {
+				{
+					this.locationContainer = $("<div>").addClass("location-container").appendTo(this.container);
+					this.locationTitle = $("<div>").addClass("location-title").prependTo(this.locationContainer);
+					this.location = $("<div>").addClass("location").appendTo(this.locationContainer);
+				}
 				
 				this._registerMapChange();
 			}
@@ -154,7 +158,7 @@
 		_registerMapChange: function(){
 			var that = this;
 		
-			this.locationTitle.html(this.options.locationTitle);
+			if (this.locationTitle != undefined) this.locationTitle.html(this.options.locationTitle);
 		
 			this.veMap.AttachEvent("onchangeview", function() {
 
@@ -165,8 +169,8 @@
 					displayInformation = "Coordinates: " + center.Latitude + ", " + center.Longitude;
 
 					if (that.options.displayLongitudeControl != undefined && that.options.displayLatitudeControl != undefined) {
-						$("#" + that.options.displayLongitudeControl).val(center.Longitude);
-						$("#" + that.options.displayLatitudeControl).val(center.Latitude);
+                        that.options.displayLongitudeControl.val(center.Longitude);
+                        that.options.displayLatitudeControl.val(center.Latitude);
 
 						displayInformation = "";
 					}
