@@ -41,10 +41,15 @@
 		<script type="text/javascript" src="ui.BingMaps.js"></script>
 	
 		<script type="text/javascript">
+		
+			var icon = "<div style='font-size:12px;font-weight:bold;border:solid 2px Black;background-color:Aqua;width:100px;'>title</div>";
+		
 			$(function(){
 				$("#map").bingmaps({displayCurrentLocation: false, height: "400px"});
 				$("#map-norouting").bingmaps({enableRouting: false, displaySearch: true, loadAllPins: true});
-				$("#map-norouting-autoShowInfo").bingmaps({enableRouting: false, displaySearch: false, loadAllPins: true, displayCurrentLocation: false, autoShowInfoBox: true});
+				$("#map-norouting-autoShowInfo").bingmaps({enableRouting: false, displaySearch: false, loadAllPins: true
+														 , displayCurrentLocation: false, autoShowInfoBox: true, usePushPins: false
+														 , customShape: icon});
 			});
 		</script>
 	

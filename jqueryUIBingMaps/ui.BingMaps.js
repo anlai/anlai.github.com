@@ -23,6 +23,8 @@
             coordinateTitle: "Locations",
 			loadAllPins: false,					/* initially load all pins */
 			hideCoordinates: false,				/* hides all the coordinates */
+			usePushPins: true,					/* default shapes are push pins */
+			customShape: ""						/* default custom shape */
         },
         _create: function() {
             this.id = this.element.attr("id");
@@ -104,8 +106,15 @@
 			
 			var veShape = new VEShape(VEShapeType.Pushpin, veLocation);
 			veShape.SetTitle(title);
-			veShape.SetDescription(description);
-						
+			veShape.SetDescription(description);			
+
+			if (!this.options.usePushPins)
+			{
+				//var icon = this.options.customShape;		
+				//icon = this.options.customShape.replace("title", title);
+				veShape.SetCustomIcon(this.options.customShape.replace(/title/i, title));
+			}
+			
             // determine what to do with the map, whether routing or not
             var addPin = true;
 
