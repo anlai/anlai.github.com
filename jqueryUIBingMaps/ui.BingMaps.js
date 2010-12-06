@@ -23,12 +23,14 @@
             coordinateTitle: "Locations",
 			loadAllPins: false,					/* initially load all pins */
 			hideCoordinates: false,				/* hides all the coordinates */
-			autoShowInfoBox: false				/* automatically show info boxes when pins are added */			
+			autoShowInfoBox: false,				/* automatically show info boxes when pins are added */					
+			shapes: new Array()					/* array to hold shapes */
         },
         _create: function() {
             this.id = this.element.attr("id");
             this.container = this.element;
-
+			this.shapes = new Array();
+			
             this.coordinates = this._formatCoordinates(this.container.children("div"));
             this.coordinatesTitle = $("<div>").addClass("coordinate-title").html(this.options.coordinateTitle).prependTo(this.coordinates);
             this.mapContainer = $("<div>").attr("id", this._randomId()).addClass("map-container").prependTo(this.container);
@@ -101,33 +103,32 @@
             var veLocation = this._readLatLng($button);
             var title = $button.find("dt").html();
             var description = $button.find("dd").html();
-            var vePin = new VEPushpin(pushPinId, veLocation, null, title, description);
-
+			
+			var veShape = new VEShape(VEShapeType.Pushpin, veLocation);
+			veShape.SetTitle(title);
+			veShape.SetDescription(description);
+						
             // determine what to do with the map, whether routing or not
             var addPin = true;
 
             if (this.options.enableRouting) {
-                addPin = this._handleRouting($button, veLocation, vePin);
+                addPin = this._handleRouting($button, veLocation, veShape);
             }
             else {
                 $button.addClass("selected");
             }
 
             if (addPin) {
-                this.veMap.AddPushpin(vePin);
-                $button.attr("pinId", vePin.ID);
+                //this.veMap.AddPushpin(vePin);
+				this.veMap.AddShape(veShape);
+				this.shapes.push(veShape);
+                $button.attr("pinId", veShape.GetID());
             }
 			
 			if (!this.options.enableRouting)
 			{
 				this._handleShowBestFit();
-			}
-
-			if (this.options.autoShowInfoBox)
-			{
-				this.veMap.ShowInfoBox(vePin);
-			}
-			
+			}			
         },
         _handleRouting: function($button, veLocation, vePin) {
             var src = this.coordinates.find("div.src");
@@ -165,7 +166,8 @@
                     that._addPushPin($(this));
                 }
                 else {
-                    that.veMap.DeletePushpin($(this).attr("pinId"));
+					var veShape = that.veMap.GetShapeByID($(this).attr("pinId"));
+					that.veMap.DeleteShape(veShape);
                     $(this).removeAttr("pinId");
                     $(this).removeClass("src dest selected");
                     that.veMap.DeleteRoute();
@@ -252,4 +254,5 @@
             return randomstring;
         }
     });
+	
 })(jQuery);

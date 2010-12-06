@@ -37,14 +37,14 @@
 			google.load("jqueryui", "1.8.2");
 		</script>
 	  
-		<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2"></script>
+		<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.3"></script>
 		<script type="text/javascript" src="ui.BingMaps.js"></script>
 	
 		<script type="text/javascript">
 			$(function(){
 				$("#map").bingmaps({displayCurrentLocation: false, height: "400px"});
 				$("#map-norouting").bingmaps({enableRouting: false, displaySearch: true, loadAllPins: true});
-				$("#map-norouting-autoShowInfo").bingmaps({enableRouting: false, displaySearch: true, loadAllPins: true, autoShowInfoBox: true});
+				$("#map-norouting-autoShowInfo").bingmaps({enableRouting: false, displaySearch: false, loadAllPins: true, displayCurrentLocation: false, autoShowInfoBox: true});
 			});
 		</script>
 	
