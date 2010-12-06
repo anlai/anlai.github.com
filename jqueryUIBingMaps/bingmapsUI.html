@@ -44,6 +44,7 @@
 			$(function(){
 				$("#map").bingmaps({displayCurrentLocation: false, height: "400px"});
 				$("#map-norouting").bingmaps({enableRouting: false, displaySearch: true, loadAllPins: true});
+				$("#map-norouting-autoShowInfo").bingmaps({enableRouting: false, displaySearch: true, loadAllPins: true, autoShowInfoBox: true});
 			});
 		</script>
 	
@@ -93,6 +94,33 @@
 				Bing Maps Widget without Routing
 			</div>
 			<div id="map-norouting">
+				<div>
+					<dl>
+						<div class="" lat="38.53701730537018" lng="-121.7490667104721">
+							<dt >Mrak Hall</dt>
+							<dd>Home of AG Dean's Office</dd>
+						</div>
+						<div class="" lat="38.53371491546687" lng="-121.74778461456299">
+							<dt class="location" >South Entry Parking Structure</dt>
+							<dd>Main Parking Structure for guests</dd>
+						</div>
+						<div class="default-location" lat="38.54198948702892" lng="-121.74997329711914">
+							<dt >Memorial Union</dt>
+						</div>
+						<div class="" lat="38.54219088461238" lng="-121.75881385803223">
+							<dt >The ARC</dt>
+						</div>
+					</dl>
+				</div>	<!-- End of coordinate container -->
+			</div>
+			
+			
+			<div style="clear:both;"></div>
+			
+			<div class="sample-header">
+				Bing Maps Widget without Routing but auto Show Info Box
+			</div>
+			<div id="map-norouting-autoShowInfo">
 				<div>
 					<dl>
 						<div class="" lat="38.53701730537018" lng="-121.7490667104721">
