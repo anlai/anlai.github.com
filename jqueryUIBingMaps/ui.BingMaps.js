@@ -108,10 +108,9 @@
 			veShape.SetTitle(title);
 			veShape.SetDescription(description);			
 
+			// use the user supplied icon instead of the pin
 			if (!this.options.usePushPins)
 			{
-				//var icon = this.options.customShape;		
-				//icon = this.options.customShape.replace("title", title);
 				veShape.SetCustomIcon(this.options.customShape.replace(/title/i, title));
 			}
 			
