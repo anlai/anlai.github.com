@@ -23,8 +23,6 @@
             coordinateTitle: "Locations",
 			loadAllPins: false,					/* initially load all pins */
 			hideCoordinates: false,				/* hides all the coordinates */
-			autoShowInfoBox: false,				/* automatically show info boxes when pins are added */					
-			shapes: new Array()					/* array to hold shapes */
         },
         _create: function() {
             this.id = this.element.attr("id");
@@ -128,7 +126,7 @@
 			if (!this.options.enableRouting)
 			{
 				this._handleShowBestFit();
-			}			
+			}		
         },
         _handleRouting: function($button, veLocation, vePin) {
             var src = this.coordinates.find("div.src");
