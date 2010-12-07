@@ -1,3 +1,10 @@
+/*
+	Developed by: Alan Lai
+	http://www.github.com/anlai/anlai.github.com/tree/master/jqueryUIBingMaps
+	Date: 12/7/2010
+	Version: 0.1 (Beta)
+*/
+
 (function($) {
 
     $.widget("ui.bingmaps", {
@@ -82,7 +89,6 @@
 
             this.veMap = veMap;
 
-			
             // set the default load pins
 			if (this.options.loadAllPins)
 			{
@@ -127,7 +133,6 @@
             }
 
             if (addPin) {
-                //this.veMap.AddPushpin(vePin);
 				this.veMap.AddShape(veShape);
 				this.shapes.push(veShape);
                 $button.attr("pinId", veShape.GetID());
