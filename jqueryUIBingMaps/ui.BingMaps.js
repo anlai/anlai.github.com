@@ -24,8 +24,9 @@
 			loadAllPins: false,					/* initially load all pins */
 			hideCoordinates: false,				/* hides all the coordinates */
 			usePushPins: true,					/* default shapes are push pins */
-			customShape: ""						/* default custom shape */
-        },
+			customShape: "",					/* default custom shape */
+			allowShapeDragging: false			/* whether or not to allow dragging of the shapes */
+			},
         _create: function() {
             this.id = this.element.attr("id");
             this.container = this.element;
@@ -107,7 +108,8 @@
 			var veShape = new VEShape(VEShapeType.Pushpin, veLocation);
 			veShape.SetTitle(title);
 			veShape.SetDescription(description);			
-
+			veShape.Draggable = this.options.allowShapeDragging;
+						
 			// use the user supplied icon instead of the pin
 			if (!this.options.usePushPins)
 			{
