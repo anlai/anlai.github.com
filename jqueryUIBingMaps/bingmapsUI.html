@@ -45,8 +45,8 @@
 			var icon = "<div style='background-color: #235087; border: 2px solid #FFFFFF; font-size: 12px; font-weight: bold; opacity: 0.7; padding: 0.5em 0; text-align: center; width: 100px;'>title</div>";
 		
 			$(function(){
-				//$("#map").bingmaps({displayCurrentLocation: false, height: "400px"});
-				//$("#map-norouting").bingmaps({enableRouting: false, displaySearch: true, loadAllPins: true});
+				$("#map").bingmaps({displayCurrentLocation: false, height: "400px"});
+				$("#map-norouting").bingmaps({enableRouting: false, displaySearch: true, loadAllPins: true});
 				$("#map-norouting-autoShowInfo").bingmaps({enableRouting: false, displaySearch: false, loadAllPins: true
 														 , displayCurrentLocation: false, autoShowInfoBox: true, usePushPins: false
 														 , customShape: icon, allowShapeDragging: true});
