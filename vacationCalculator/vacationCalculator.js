@@ -2,6 +2,10 @@ $(function(){
 	$(".date").datepicker();
 	
 	$("#calculate").click(function(){Calculate();});
+	
+	// initialize tips
+	$("#hoursPerDay").bt('Hours that are taken for each day on vacation');
+	$("#vacationBetween").bt('Hours for any vacations between now and the vacation in question.');
 });
 
 // calculate the extra hours needed
