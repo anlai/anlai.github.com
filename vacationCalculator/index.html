@@ -1,0 +1,69 @@
+<html>
+	<head>
+	
+	    <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+		<script type="text/javascript">
+			google.load("jquery", "1.4.3");
+			google.load("jqueryui", "1.8.2");      
+		</script>
+	
+		<link rel='stylesheet' type='text/css' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css' />
+		<link rel='stylesheet' type='text/css' href='main.css' />
+		<script type='text/javascript' src='vacationCalculator.js' ></script>
+	</head>
+	<body>
+	
+		<div id="header">
+		</div>
+	
+		<div id="main">
+		
+			<h2>Vacation Time Calculator</h2>
+			
+			<ul>
+				<li><strong>Last Date of Pay</strong>	
+					<input type="text" id="lastDatePay" class="date"/>
+				</li>
+				<li><strong>Time Accrued</strong>
+					<input type="text" id="timeAccrued"/>
+				</li>
+				<li><strong>Time Accrued per Month</strong>
+					<input type="text" id="timeAccruedMonth"/>
+				</li>
+				<li style="height: 2em;"><!-- blank for spacing --></li> 
+				<li><strong>Start of Vacation</strong>
+					<input type="text" id="startVacation" class="date"/>
+				</li>
+				<li><strong>End of Vacation</strong>
+					<input type="text" id="endVacation" class="date"/>
+				</li>
+				<li><strong>Hours per Day</strong>
+					<input type="text" id="hoursPerDay"/>
+				</li>
+				<li style="height: 2em;"><!-- blank for spacing --></li>
+				<li><strong></strong>
+					<input type="button" id="calculate" value="calculate"/>
+				<li>
+			</ul>
+		
+			<div style="clear:both;"></div>
+		
+			<div id="results">
+				<span id="imgs">
+					<img id="check" src="check.png" style="display:none;" />
+					<img id="x" src="x.png" style="display:none;" />
+				</span>
+				<span id="result-txt" style="display:inline-block;"></span>
+			</div>
+		
+		</div>
+	
+		<div id="footer">
+			<div id="footer_text">
+			Developed by Alan Lai | 
+			<a href="github.com/anlai">Src from here</a>
+			</div>
+		</div>
+	
+	</body>
+</html>
