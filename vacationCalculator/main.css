@@ -47,3 +47,9 @@ ul li strong {
 	margin: 1em;
 	padding: 1em;
 }
+
+.result-txt
+{
+	display: inline-block;
+	margin-left: 2em;
+}

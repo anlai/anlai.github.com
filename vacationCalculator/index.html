@@ -41,6 +41,10 @@
 					<input type="text" id="hoursPerDay"/>
 				</li>
 				<li style="height: 2em;"><!-- blank for spacing --></li>
+				<li><strong>Vacation Between</strong>
+					<input type="text" id="vacationBetween"/>
+				</li>
+				<li style="height: 2em;"><!-- blank for spacing --></li>
 				<li><strong></strong>
 					<input type="button" id="calculate" value="calculate"/>
 				<li>
@@ -53,7 +57,9 @@
 					<img id="check" src="check.png" style="display:none;" />
 					<img id="x" src="x.png" style="display:none;" />
 				</span>
-				<span id="result-txt" style="display:inline-block;"></span>
+				<span id="result-txt" class="result-txt"></span>
+				<span id="available-hours" class="result-txt"></span>
+				<span id="hours-needed" class="result-txt"></span>
 			</div>
 		
 		</div>

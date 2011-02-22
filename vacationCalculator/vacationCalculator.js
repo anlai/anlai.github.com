@@ -13,15 +13,22 @@ function Calculate()
 	var startVacation = new Date($("#startVacation").val());
 	var endVacation = new Date($("#endVacation").val());
 	var hoursPerDay = Number($("#hoursPerDay").val());
-		
+	var vacationBetween = Number($("#vacationBetween").val());
+	if (isNaN(vacationBetween)) vacationBetween = 0;
+			
 	// first calculate the total hours available at start of vacation
 	var availableBeginning = AvailableHours(lastPayDate, timeAccrued, timeAccruedMonth, startVacation);
+	// remove any vacations in between
+	availableBeginning = availableBeginning - vacationBetween;
 	
 	// calculate how many hours will be needed for the vacation
 	var hoursNeeded = CalculateNeededHours(startVacation, endVacation, hoursPerDay);
-	
+		
 	$("#check").hide();
 	$("#x").hide();
+	
+	$("#hours-needed").html("Hours needed: " + hoursNeeded);
+	$("#available-hours").html("Available hours: " + availableBeginning);
 	
 	if (hoursNeeded > availableBeginning)
 	{
