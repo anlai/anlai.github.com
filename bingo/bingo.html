@@ -21,6 +21,15 @@
 			var balls = new Array();
 			var radius = 20;
 			
+			// [textcolor,backgroundcolor]
+			var colors  = [["#10222B", "#95AB64"],
+						  ["#362C2A", "#732420"],
+						  ["#2E2F38", "#FFD63E"],
+						  ["#121212", "#E6F2DA"],
+						  ["#343F40", "#736751"],
+						  ["#000000", "#2D2B2A"],
+						  ["#333b3A", "#B4BD51"]];
+			
 			var fps = 75;
 			var timeInterval = 1000/fps;
 		
@@ -29,7 +38,8 @@
 			var gravity = new b2Vec2(0,250);
 			var doSleep = true;
 		
-			var numbers = new Array(70);
+			var numbers = new Array(70);	// 70 is the max number of balls i expect
+			var ballColors = new Array(70);
 		
 			$(function(){
 				$canvas = $("#canvas");
@@ -37,11 +47,11 @@
 				
 				var x = $canvas[0].width / 2;
 				var y = $canvas[0].height * .2;
-				
+								
 				createWorld();
 				createBall(x,y);
 				drawWorld();
-				
+
 				setInterval(updateStage, timeInterval);
 
 				// for demo just fill in a bunch of balls
@@ -49,10 +59,12 @@
 			});
 			
 			function fillBalls(){
-				if (balls.length < 30)
-				{
+				if (balls.length < 30) {
 					var xpos = (Math.random() * 1000) % 400;	
 					var y = $canvas[0].height * .2;					
+					//var xpos = $canvas[0].width - 20;
+					//var y = 0;
+					
 					createBall(xpos,y);
 				
 					setTimeout(fillBalls, 1000);
@@ -96,6 +108,10 @@
 				createBox(world, 0,0, 10, 500);
 				// right wall
 				createBox(world, $canvas[0].width , 0, 10, 500);
+				
+				// make the tube where the balls will come out
+				//createBox(world, $canvas[0].width - 75, 0, 5, 140);
+				//createBox(world, $canvas[0].width - 50, 200, 75, 5);
 			}
 			
 			// creates the boundry boxes
@@ -110,9 +126,10 @@
 				
 				world.CreateBody(boxBd);			
 			}
-			
+				
 			// create a new ball
 			function createBall(x,y) {			
+			
 				var ballSd = new b2CircleDef();
 				ballSd.density = 1
 				ballSd.radius = radius;
@@ -125,10 +142,17 @@
 				
 				balls.push(ball);
 				numbers[ball.m_shapeList.m_proxyId] = getBingoNumber();
+				
+				var colorTheme = colors[Math.floor(Math.random() * 1000) % 7];
+				ballColors[ball.m_shapeList.m_proxyId] = colorTheme;
 			}
 			
 			// draw all the balls
 			function drawWorld() {	
+			
+				for (var j = world.m_jointList; j; j = j.m_next) {
+					drawJoint(j, context);
+				}
 			
 				for (var b = world.m_bodyList; b; b = b.m_next) {
 					for (var s = b.GetShapeList(); s != null; s = s.GetNext()) {
@@ -146,9 +170,11 @@
 						var pos = shape.m_position;
 						var r = shape.m_radius;
 					
+						var colorTheme = ballColors[shape.m_proxyId];
+						
 						context.beginPath();
 						context.arc(pos.x, pos.y, r, 0, 2*Math.PI, false);
-						context.fillStyle = "blue";
+						context.fillStyle = colorTheme[1];
 						context.fill();
 						
 						// add the number
@@ -156,7 +182,7 @@
 						var textx = bingoNum > 9 ? pos.x - 6 : pos.x - 4;
 						var texty = pos.y + 4;						
 						
-						context.fillStyle = 'white';
+						context.fillStyle = colorTheme[0];
 						context.font = "bold 12px sans-serif";
 						context.fillText(numbers[shape.m_proxyId], textx, texty);
 						
