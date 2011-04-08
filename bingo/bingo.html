@@ -29,6 +29,8 @@
 			var gravity = new b2Vec2(0,250);
 			var doSleep = true;
 		
+			var numbers = new Array(70);
+		
 			$(function(){
 				$canvas = $("#canvas");
 				context = $canvas[0].getContext("2d");
@@ -41,10 +43,8 @@
 				drawWorld();
 				
 				setInterval(updateStage, timeInterval);
-				
-				// just create the second ball
-				//setTimeout(function(){createBall(x+5,y);}, 1000);
-				
+
+				// for demo just fill in a bunch of balls
 				fillBalls();
 			});
 			
@@ -121,7 +121,10 @@
 				var ballBd = new b2BodyDef();
 				ballBd.AddShape(ballSd);
 				ballBd.position.Set(x,y);
-				balls.push(world.CreateBody(ballBd));
+				var ball = world.CreateBody(ballBd);
+				
+				balls.push(ball);
+				numbers[ball.m_shapeList.m_proxyId] = getBingoNumber();
 			}
 			
 			// draw all the balls
@@ -147,6 +150,16 @@
 						context.arc(pos.x, pos.y, r, 0, 2*Math.PI, false);
 						context.fillStyle = "blue";
 						context.fill();
+						
+						// add the number
+						var bingoNum = numbers[shape.m_proxyId];
+						var textx = bingoNum > 9 ? pos.x - 6 : pos.x - 4;
+						var texty = pos.y + 4;						
+						
+						context.fillStyle = 'white';
+						context.font = "bold 12px sans-serif";
+						context.fillText(numbers[shape.m_proxyId], textx, texty);
+						
 					}
 					break;
 					case b2Shape.e_polyShape:
@@ -165,9 +178,12 @@
 					}
 					break;
 				}
-				
-
+			}
 			
+			// gives back the next bingo number
+			// turn this into some call into a server
+			function getBingoNumber(){
+				return Math.floor((Math.random() * 1000) % 68);
 			}
 		</script>
 	</head> 
