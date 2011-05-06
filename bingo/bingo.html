@@ -8,6 +8,49 @@
 			body {
 				overflow: hidden;
 			}
+			
+			.main { width: 1000px;}
+			
+			#card_container{		
+				float: left;
+				width: 600px;
+				height: 500px;
+				border: 1px solid black;
+				
+				text-align: center;
+			}
+			#bingo_container{
+				float: left;
+				width: 350px;
+				height: 450px;
+				margin-left: 20px;
+			}
+			#bingo_call_container{
+				float: left;
+				width: 350px;
+				height: 50px;
+				margin-left: 20px;
+			}
+			#scoreboard_container{
+				width: 100%;
+				float: left;
+				height: 100px;
+				border: 1px solid black;
+				margin-top: 1em;
+			}
+			
+			table.card { 
+				margin: auto;			
+				margin-top: 1em;
+				border: 1px solid black;
+			}
+			
+			table.card tr { font-size:40px; padding: 1em; }
+			table.card tr :hover { background-color: orange;}
+			
+			table.card td { border: 1px solid black; }
+			
+			
 		</style> 
 		
 		<script src="js/jquery-1.2.3.js"></script>
@@ -16,17 +59,69 @@
 		
 		<script src="js/bingo_balls.js"></script>
 		
+		<script type="text/javascript">
+			$(function(){
+				$("input[type='button']").button();
+			});
+		</script>
+		
 	</head> 
 	<body> 
  
+	<div class="main">
+ 
 	<div id="card_container">
+		<table class="card" cellpadding="20">
+			<tr>
+				<td>10</td>
+				<td>33</td>
+				<td>63</td>
+				<td>29</td>
+				<td>31</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>33</td>
+				<td>63</td>
+				<td>29</td>
+				<td>31</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>33</td>
+				<td>Free</td>
+				<td>29</td>
+				<td>31</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>33</td>
+				<td>63</td>
+				<td>29</td>
+				<td>31</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>33</td>
+				<td>63</td>
+				<td>29</td>
+				<td>31</td>
+			</tr>
+		</table>
 	</div>
  
 	<div id="bingo_container">
-	<canvas id="canvas" width="500" height="300" style="border: 1px solid black;" />
+	<canvas id="canvas" width="345" height="450" style="border: 1px solid black;" />
+	</div>
+  
+	<div id="bingo_call_container">
+		<input type="button" value="bingo"/>
 	</div>
   
 	<div id="scoreboard_container">
+		&nbsp;
+	</div>
+  
 	</div>
   
 	</body> 

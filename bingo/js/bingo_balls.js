@@ -7,13 +7,15 @@
 	var radius = 20;
 	
 	// [textcolor,backgroundcolor]
-	var colors  = [["#10222B", "#95AB64"],
-				  ["#362C2A", "#732420"],
-				  ["#2E2F38", "#FFD63E"],
-				  ["#121212", "#E6F2DA"],
-				  ["#343F40", "#736751"],
-				  ["#000000", "#2D2B2A"],
-				  ["#333b3A", "#B4BD51"]];
+	// var colors  = [["#10222B", "#95AB64"],
+				  // ["#362C2A", "#732420"],
+				  // ["#2E2F38", "#FFD63E"],
+				  // ["#121212", "#E6F2DA"],
+				  // ["#343F40", "#736751"],
+				  // ["#000000", "#2D2B2A"],
+				  // ["#333b3A", "#B4BD51"]];
+	
+	var colors = [["#ffffff", "#014a81"]];
 	
 	// frame rate variables
 	var fps = 75;
@@ -134,7 +136,8 @@
 		balls.push(ball);
 		numbers[ball.m_shapeList.m_proxyId] = getBingoNumber();
 		
-		var colorTheme = colors[Math.floor(Math.random() * 1000) % 7];
+		//var colorTheme = colors[Math.floor(Math.random() * 1000) % 7];
+		var colorTheme = colors[0];
 		ballColors[ball.m_shapeList.m_proxyId] = colorTheme;
 	}
 	
@@ -162,6 +165,8 @@
 				var r = shape.m_radius;
 			
 				var colorTheme = ballColors[shape.m_proxyId];
+				
+				if (colorTheme == undefined) colorTheme = colors[0];
 				
 				context.beginPath();
 				context.arc(pos.x, pos.y, r, 0, 2*Math.PI, false);
