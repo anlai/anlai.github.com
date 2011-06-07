@@ -1,0 +1,41 @@
+#header{}
+
+#main{
+	overflow: auto;
+	padding-bottom: 130px;
+	margin: 0 auto;
+	width: 937px;
+}
+
+#footer
+{
+	border-top: 1px solid lightgray;
+	margin-top: -50px;
+	position: relative;
+}
+
+#footer_text
+{
+	padding-top: 1em;
+	text-align: center;
+}
+
+h2
+{
+border-bottom: 1px solid lightgray;
+}
+
+ul {
+	list-style: none;
+}
+
+ul li {
+	float:left;
+	width: 48%;
+	margin-top: 1em;
+}
+
+ul li strong {
+	display: inline-block;
+	width: 180px;
+}
