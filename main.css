@@ -29,6 +29,10 @@ ul {
 	list-style: none;
 }
 
+ul li {
+	margin: .5em 0;
+}
+
 ul li strong {
 	display: inline-block;
 	width: 180px;
