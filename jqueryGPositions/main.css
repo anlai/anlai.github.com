@@ -4,3 +4,32 @@
 	margin: 0 auto;
 	width: 937px;
 }
+
+.page-header
+{
+	border-bottom: 1px solid lightgrey;
+}
+
+.page-header div
+{
+	margin: 0 auto;
+	width: 937px;
+}
+
+section header h3
+{
+	margin-bottom: 1em;
+}
+
+footer
+{
+	border-top: 1px solid lightgrey;
+	margin-top: -50px;
+	position: relative;
+}
+
+footer div
+{
+	padding: 1em;
+	text-align: center;
+}
