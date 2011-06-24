@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+	
+		<title>jQuery Google Maps</title>
+	
+		<link rel='stylesheet' type='text/css' href='main.css' />
+	
+		<script type="text/javascript" src="jquery-1.5.1.min.js" ></script>
+		<script type="text/javascript" src="jquery-ui-1.8.13.min.js" ></script>
+		<script src="https://maps-api-ssl.google.com/maps/api/js?v=3&sensor=false" type="text/javascript"></script>
+		<script type="text/javascript" src="jquery.gPositions.js"></script>
+		
+		<script type="text/javascript">
+			
+			$(function(){
+			
+				var latlng = new google.maps.LatLng(38.537061, -121.749174);
+				var options = { zoom: 16, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
+			
+				//var map = new google.maps.Map($("#map")[0], options);
+				
+				$("#map").gPositions();
+				
+			});
+		
+		</script>
+	
+	</head>
+	
+	<body>
+	
+		<div id="main">
+			<header>
+			</header>
+			
+			<section>
+				<div id="map" style="margin: 0px 0px 20px">
+					
+					<div class="gp-map" style="height: 400px; width: 800px;"></div>
+					
+					<div class="gp-coordinate" data-lat="38.53701730537018" data-lng="-121.7490667104721">
+						<dt class="gp-name">Mrak Hall</dt>
+						<dd class="gp-description">Home of AG Dean's Office</dd>
+					</div>
+					<div class="gp-coordinate" data-lat="38.539411128558385" data-lng="-121.74984186887741">
+						<dt class="gp-name">Shields Library</dt>
+						<dd class="gp-description">The Main Library of Davis</dd>
+					</div>
+					<div class="gp-coordinate" data-lat="38.53371491546687" data-lng="-121.74778461456299">
+						<dt class="gp-name" >South Entry Parking Structure</dt>
+						<dd class="gp-description">Main Parking Structure for guests</dd>
+					</div>
+					<div class="gp-coordinate gp-default" data-lat="38.54198948702892" data-lng="-121.74997329711914">
+						<dt class="gp-name">Memorial Union</dt>
+					</div>
+					<div class="gp-coordinate" data-lat="38.544523698853574" data-lng="-121.75756931304932">
+						<dt class="gp-name">Bixby Hall</dt>
+						<dd class="gp-description">Dorms</dd>
+					</div>
+					<div class="gp-coordinate" data-lat="38.54219088461238" data-lng="-121.75881385803223">
+						<dt class="gp-name">The ARC</dt>
+					</div>
+				</div> <!-- End of map container -->
+
+				<div style="clear:both;"></div>
+			
+			</section>
+			
+			<footer>
+			</footer>
+		</div>
+	
+	</body>
+
+</html>
