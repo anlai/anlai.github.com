@@ -53,6 +53,53 @@
 				
 			});
 		
+			function AdjustMapView($gpContainer, gmap)
+			{			
+				var bounds = new google.maps.LatLngBounds();
+				
+				var $selected = $gpContainer.find(".gp-selected");
+				
+				// just set the default zoom if all markers are removed
+				if ($selected.length <= 1)
+				{
+					// center on single pin
+					if ($selected.length == 1)
+					{
+						var lat = $selected.data("lat");
+						var lng = $selected.data("lng");
+						var latlng = new google.maps.LatLng(lat, lng);
+						
+						gmap.setCenter(latlng);
+					}
+					
+					// always adjust zoom
+					gmap.setZoom(settings.zoom);
+				}
+				else
+				{
+					// get the bounds on all markers
+					$.each($selected, function(index,item){
+						var lat = $(this).data("lat");
+						var lng = $(this).data("lng");
+					
+						var latlng = new google.maps.LatLng(lat, lng);
+						bounds.extend(latlng);
+					});
+					
+					gmap.fitBounds(bounds);
+				}
+			}
+		
+			function CreateMap($gpContainer)
+			{			
+				var latlng = new google.maps.LatLng(settings.latitude, settings.longitude);
+				var options = { zoom: settings.zoom, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
+			
+				var map = new google.maps.Map($gpContainer.find(".gp-map")[0], options);
+				
+				return map;
+			}
+		
 			function CreateCoordinateList($gpContainer, $coordinates)
 			{
 				var $list = $("<ul>").addClass("gp-coordinate-container");
@@ -73,25 +120,40 @@
 					var lat = $(this).data("lat");
 					var lng = $(this).data("lng");
 					
-					var latlng = new google.maps.LatLng(lat, lng);
-					var marker = new google.maps.Marker({
-						position: latlng, 
-						map: gmap, 
-						title:"Hello World!"
-					});  
-				
+					var title = $(this).find(".gp-name").html();
+					var description = $(this).find(".gp-description").html();
+					
+					if ($(this).hasClass("gp-selected"))
+					{
+						$(this).removeClass("gp-selected");
+					}
+					else
+					{
+						$(this).addClass("gp-selected");
+						
+						var latlng = new google.maps.LatLng(lat, lng);
+						var marker = new google.maps.Marker({
+							position: latlng, 
+							map: gmap, 
+							animation: google.maps.Animation.DROP,
+							title: title != undefined && title != "" ? title : "no title"
+						});  
+					
+						// add the info window when the marker is clicked
+						var infowindow = new google.maps.InfoWindow({
+							content: description
+						});
+
+						google.maps.event.addListener(marker, 'click', function() {
+							infowindow.open(gmap,marker);
+						});
+					}
+					
+					AdjustMapView($gpContainer, gmap);
 				});
 			}
 		
-			function CreateMap($gpContainer)
-			{			
-				var latlng = new google.maps.LatLng(settings.latitude, settings.longitude);
-				var options = { zoom: settings.zoom, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
-			
-				var map = new google.maps.Map($gpContainer.find(".gp-map")[0], options);
-				
-				return map;
-			}
+
 		}
 		
     }); // end of $.fn.extend
