@@ -28,6 +28,9 @@
         gPositions : function(options) {
 		
 			var markers = [];
+			// required to use the direction/routing services
+			var directionsService = new google.maps.DirectionsService();
+			var directionDisplay;
 			
 			// set the default values
 			var settings = $.extend({
@@ -50,16 +53,56 @@
 				
 				// creat the coordinate list for the user to select from
 				CreateCoordinateList($gpContainer, $coordinates);
-				BindCoordinateActions($gpContainer, $coordinates, gmap);
-			
-				
+				BindCoordinateActions($gpContainer, $coordinates, gmap);	
 			});
+		
+			/*
+				Adjusts the map to show routing information
+			*/
+			function AdjustMapViewRouting($gpContainer, gmap)
+			{
+				if (directionDisplay != null) directionDisplay.setMap(null);
+			
+				// add the directions overlay to the map
+				directionDisplay = new google.maps.DirectionsRenderer();
+				directionDisplay.setMap(gmap);
+				
+				// figure out the directions
+				var src = markers[0];				// first marker
+				var dest = markers[markers.length-1];	// last marker
+				
+				var wayPts = [];
+				if (markers.length > 2)
+				{
+					debugger;
+				
+					for(i = 1; i < markers.length-1; i++)
+					{
+						wayPts.push({location: markers[i].position, stopover: true});
+					}
+				}
+				
+				var request = {origin: src.position, destination: dest.position, waypoints: wayPts, travelMode: google.maps.TravelMode.WALKING};
+				
+				directionsService.route(request, function(result, status)
+					{
+						if (status == google.maps.DirectionsStatus.OK)
+						{
+							directionDisplay.setDirections(result);
+						}
+					});
+			}
 		
 			function AdjustMapView($gpContainer, gmap)
 			{			
 				var bounds = new google.maps.LatLngBounds();
 				
 				var $selected = $gpContainer.find(".gp-selected");
+				
+				if ($selected.length > 1 && settings.routing)
+				{
+					AdjustMapViewRouting($gpContainer, gmap);
+				}
 				
 				// just set the default zoom if all markers are removed
 				if ($selected.length <= 1)
@@ -115,8 +158,11 @@
 				$gpContainer.append($list);
 			}
 		
-			// creates a marker
-			// returns gmid number
+			/*
+				Creates the marker
+				
+				return: returns the gmid number
+			*/
 			function AddMarker(latlng, title, description, gmap)
 			{
 				var marker = new google.maps.Marker({
@@ -190,8 +236,6 @@
 					AdjustMapView($gpContainer, gmap);
 				});
 			}
-		
-
 		}
 		
     }); // end of $.fn.extend

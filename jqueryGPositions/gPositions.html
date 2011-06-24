@@ -21,7 +21,7 @@
 			
 				//var map = new google.maps.Map($("#map")[0], options);
 				
-				$("#map").gPositions();
+				$("#map").gPositions({routing:true});
 				
 			});
 		
@@ -31,6 +31,12 @@
 			.gp-selected
 			{
 				background-color: red;
+			}
+			
+			.gp-coordinate
+			{
+				cursor: pointer;
+				border: 1px solid black;
 			}
 		</style>
 	
