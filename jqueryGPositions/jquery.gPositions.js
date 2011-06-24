@@ -27,6 +27,8 @@
 
         gPositions : function(options) {
 		
+			var markers = [];
+			
 			// set the default values
 			var settings = $.extend({
 				height: 	"300px;",
@@ -113,40 +115,76 @@
 				$gpContainer.append($list);
 			}
 		
+			// creates a marker
+			// returns gmid number
+			function AddMarker(latlng, title, description, gmap)
+			{
+				var marker = new google.maps.Marker({
+					position: latlng, 
+					map: gmap, 
+					animation: google.maps.Animation.DROP,
+					title: title != undefined && title != "" ? title : "no title"
+				});  
+				
+				// add the info window when the marker is clicked
+				var infowindow = new google.maps.InfoWindow({
+					content: description
+				});
+
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.open(gmap,marker);
+				});
+				
+				markers.push(marker);
+								
+				return marker.__gm_id;
+			}
+			
+			function RemoveMarker(gmid)
+			{									
+				// remove the marker from the map				
+				var marker, index;
+				
+				for(i = 0; i < markers.length; i++)
+				{
+					if (markers[i].__gm_id == gmid)
+					{
+						index = i;
+						break;
+					}
+				}
+			
+				if (index != undefined)
+				{
+					marker = markers.splice(i);
+					marker[0].setMap(null);
+				}
+			}
+		
 			function BindCoordinateActions($gpContainer, $coordinates, gmap)
 			{			
 				$coordinates.click(function(){
 					
-					var lat = $(this).data("lat");
-					var lng = $(this).data("lng");
-					
-					var title = $(this).find(".gp-name").html();
-					var description = $(this).find(".gp-description").html();
-					
 					if ($(this).hasClass("gp-selected"))
 					{
 						$(this).removeClass("gp-selected");
+						var gmid = $(this).data("gmid");		
+						RemoveMarker(gmid);
 					}
 					else
 					{
 						$(this).addClass("gp-selected");
 						
+						var lat = $(this).data("lat");
+						var lng = $(this).data("lng");
 						var latlng = new google.maps.LatLng(lat, lng);
-						var marker = new google.maps.Marker({
-							position: latlng, 
-							map: gmap, 
-							animation: google.maps.Animation.DROP,
-							title: title != undefined && title != "" ? title : "no title"
-						});  
+						
+						var title = $(this).find(".gp-name").html();
+						var description = $(this).find(".gp-description").html();
+						
+						var gmid = AddMarker(latlng, title, description, gmap);
 					
-						// add the info window when the marker is clicked
-						var infowindow = new google.maps.InfoWindow({
-							content: description
-						});
-
-						google.maps.event.addListener(marker, 'click', function() {
-							infowindow.open(gmap,marker);
-						});
+						$(this).data("gmid", gmid);								
 					}
 					
 					AdjustMapView($gpContainer, gmap);
