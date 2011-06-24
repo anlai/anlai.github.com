@@ -101,6 +101,10 @@
 				{
 					AdjustMapViewRouting($gpContainer, gmap);
 				}
+				else
+				{
+					if (directionDisplay != null) directionDisplay.setMap(null);
+				}
 				
 				// just set the default zoom if all markers are removed
 				if ($selected.length <= 1)
@@ -200,13 +204,15 @@
 					if (markers[i].__gm_id == gmid)
 					{
 						index = i;
+						//marker = markers[i];
 						break;
 					}
 				}
 			
 				if (index != undefined)
 				{
-					marker = markers.splice(i);
+					//markers.remove(index);
+					marker = markers.splice(index,1);
 					marker[0].setMap(null);
 				}
 			}
