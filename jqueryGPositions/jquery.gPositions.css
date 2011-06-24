@@ -1,0 +1,38 @@
+.gp-map{
+	float: left;
+}
+
+ul.gp-coordinate-container 
+{
+	list-style: none;
+	display: block;
+	float: left;
+	margin-left: -40px;
+	margin-top: -10px;
+}
+
+ul.gp-coordinate-container li
+{
+	margin: 1em 0;
+	border-top: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+div.gp-coordinate{
+	cursor: pointer;
+	padding: .5em;
+}
+
+.gp-selected
+{
+	background-color: #FEF1EC;
+}
+
+.gp-name
+{
+	font-weight: bold;
+}
+.gp-description{
+	padding-top: .5em;	
+}

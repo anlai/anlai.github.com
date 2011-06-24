@@ -6,6 +6,7 @@
 		<title>jQuery Google Maps</title>
 	
 		<link rel='stylesheet' type='text/css' href='main.css' />
+		<link rel='stylesheet' type='text/css' href='jquery.gPositions.css' />
 	
 		<script type="text/javascript" src="jquery-1.5.1.min.js" ></script>
 		<script type="text/javascript" src="jquery-ui-1.8.13.min.js" ></script>
@@ -15,30 +16,12 @@
 		<script type="text/javascript">
 			
 			$(function(){
-			
-				var latlng = new google.maps.LatLng(38.537061, -121.749174);
-				var options = { zoom: 16, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
-			
-				//var map = new google.maps.Map($("#map")[0], options);
-				
+							
 				$("#map").gPositions({routing:true});
 				
 			});
 		
 		</script>
-	
-		<style type="text/css">
-			.gp-selected
-			{
-				background-color: red;
-			}
-			
-			.gp-coordinate
-			{
-				cursor: pointer;
-				border: 1px solid black;
-			}
-		</style>
 	
 	</head>
 	
@@ -51,15 +34,11 @@
 			<section>
 				<div id="map" style="margin: 0px 0px 20px">
 					
-					<div class="gp-map" style="height: 400px; width: 800px;"></div>
+					<div class="gp-map" style="height:350px; width: 550px;"></div>
 					
 					<div class="gp-coordinate" data-lat="38.53701730537018" data-lng="-121.7490667104721">
 						<dt class="gp-name">Mrak Hall</dt>
 						<dd class="gp-description">Home of AG Dean's Office</dd>
-					</div>
-					<div class="gp-coordinate" data-lat="38.539411128558385" data-lng="-121.74984186887741">
-						<dt class="gp-name">Shields Library</dt>
-						<dd class="gp-description">The Main Library of Davis</dd>
 					</div>
 					<div class="gp-coordinate" data-lat="38.53371491546687" data-lng="-121.74778461456299">
 						<dt class="gp-name" >South Entry Parking Structure</dt>

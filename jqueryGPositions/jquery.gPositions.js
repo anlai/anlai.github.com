@@ -73,9 +73,7 @@
 				
 				var wayPts = [];
 				if (markers.length > 2)
-				{
-					debugger;
-				
+				{		
 					for(i = 1; i < markers.length-1; i++)
 					{
 						wayPts.push({location: markers[i].position, stopover: true});
@@ -148,7 +146,8 @@
 			function CreateCoordinateList($gpContainer, $coordinates)
 			{
 				var $list = $("<ul>").addClass("gp-coordinate-container");
-			
+				//var $container = $("<div>").addClass("gp-coordinate-container").append($list);
+				
 				$.each($coordinates, function(index,item){
 				
 					$list.append($("<li>").append(item));
@@ -180,7 +179,12 @@
 				google.maps.event.addListener(marker, 'click', function() {
 					infowindow.open(gmap,marker);
 				});
-				
+			
+				if (settings.routing) 
+				{
+					marker.setMap(null);
+				}
+			
 				markers.push(marker);
 								
 				return marker.__gm_id;
