@@ -147,7 +147,9 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 			function CreatePositionSelecting(map, $gpContainer)
 			{			
 				// load in the crosshairs
-				var $crosshairs = $("<img>").attr("src", "crosshair.gif").addClass("gp-crosshair");
+				//var $crosshairs = $("<img>").attr("src", "crosshair.gif").addClass("gp-crosshair");
+				
+				var $crosshairs = $("<div>").addClass("gp-crosshair");
 				
 				$gpContainer.prepend($crosshairs);
 			
