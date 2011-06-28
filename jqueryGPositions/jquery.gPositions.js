@@ -316,19 +316,6 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 			{
 				var $list = $("<ul>").addClass("gp-selecting-controls");
 				
-				// create the search boxes
-				var $search = $("<li>").html("Search Address: &nbsp");
-				// create search box
-				var $searchBox = $("<input>").addClass("gp-search-box");
-				$searchBox.keyup(function(event){if(event.keyCode == 13){ $(this).siblings('input[type="button"]').click(); }});
-				// create search button
-				var $searchBtn = $("<input>").attr("type", "button").val("Search");
-				$searchBtn.click(function(){ 
-					var address = $(this).siblings(".gp-search-box").val(); 
-					Search(gmap, address);
-				});
-				$search.append($searchBox).append($searchBtn);
-				
 				var $lat = $("<li>").html("Latitude:").append($("<input>").attr("name", "lat").attr("type", "hidden").addClass("gp-lat"));
 				var $lng = $("<li>").html("Longitude:").append($("<input>").attr("name", "lng").attr("type", "hidden").addClass("gp-lng"));
 				
@@ -339,6 +326,20 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 					$lng.append($("<div>").addClass("gp-lng-debug"));
 				}
 				
+								
+				// create the search boxes
+				var $search = $("<li>").html("Search Address: &nbsp");
+				// create search box
+				var $searchBox = $("<input>").addClass("gp-search-box");
+				$searchBox.keyup(function(event){if(event.keyCode == 13){ $(this).siblings('input[type="button"]').click(); }});
+				// create search button
+				var $searchBtn = $("<input>").attr("type", "button").val("Search");
+				$searchBtn.click(function(){ 
+					var address = $(this).siblings(".gp-search-box").val(); 
+					Search(gmap, address, $lat, $lng);
+				});
+				$search.append($searchBox).append($searchBtn);
+				
 				$list.append($search);
 				$list.append($lat);
 				$list.append($lng);
@@ -346,15 +347,31 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				$gpContainer.append($list);
 			}
 			
-			function Search(gmap, address)
+			function Search(gmap, address, $lat, $lng)
 			{
 				var geocoder = new google.maps.Geocoder();
 				geocoder.geocode({'address': address}, function(results, status){
 					if (status == google.maps.GeocoderStatus.OK)
 					{
 						gmap.setCenter(results[0].geometry.location);
+						
+						// set the location
+						var $latInput = $lat.find(".gp-lat");
+						var $lngInput = $lat.find(".gp-lng");
+						
+						$latInput.val(results[0].geometry.location.lat());
+						$lngInput.val(results[0].geometry.location.lng());
+						
+						if (settings.debug)
+						{
+							var $latdebug = $lat.find(".gp-lat-debug");
+							var $lngdebug = $lng.find(".gp-lng-debug");
+							
+							$latdebug.html(results[0].geometry.location.lat());
+							$lngdebug.html(results[0].geometry.location.lng());
+						}
+						
 					}
-				
 				});
 			}
 		}
