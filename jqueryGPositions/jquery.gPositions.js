@@ -43,7 +43,8 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				longitude:	-121.749174,
 				zoom:		16,
 				mode:		MapMode.STANDARD,
-				mapType:	google.maps.MapTypeId.ROADMAP
+				mapType:	google.maps.MapTypeId.ROADMAP,
+				debug: 		false
 			}, options);
 		
 			return this.each(function(index,item){
@@ -59,6 +60,11 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 					// create the coordinate list for the user to select from
 					CreateCoordinateList($gpContainer, $coordinates);
 					BindCoordinateActions($gpContainer, $coordinates, gmap);	
+				}
+				else
+				{
+					CreatePositionSelectingControls(gmap, $gpContainer);
+					CreatePositionSelecting(gmap, $gpContainer);
 				}
 			});
 		
@@ -103,7 +109,7 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				
 				var $selected = $gpContainer.find(".gp-selected");
 				
-				if ($selected.length > 1 && settings.mode == gPositions.MapMode.ROUTING)
+				if ($selected.length > 1 && settings.mode == MapMode.ROUTING)
 				{
 					AdjustMapViewRouting($gpContainer, gmap);
 				}
@@ -143,28 +149,6 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				}
 			}
 		
-			// Creates the map with listener for selecting position
-			function CreatePositionSelecting(map, $gpContainer)
-			{			
-				// load in the crosshairs
-				//var $crosshairs = $("<img>").attr("src", "crosshair.gif").addClass("gp-crosshair");
-				
-				var $crosshairs = $("<div>").addClass("gp-crosshair");
-				
-				$gpContainer.prepend($crosshairs);
-			
-				google.maps.event.addListener(map, 'mouseup', function(event) {
-				
-					var test = event.latLng;
-					
-					alert(event.latLng.lat());
-					alert(event.latLng.lng());
-					
-					//debugger;
-				
-				});
-			}
-		
 			// Creates the standard map with selecting points / routing
 			function CreateMap($gpContainer)
 			{			
@@ -172,11 +156,6 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				var options = { zoom: settings.zoom, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
 			
 				var map = new google.maps.Map($gpContainer.find(".gp-map")[0], options);
-			
-				if (settings.mode == MapMode.SELECTINGPOINT)
-				{
-					CreatePositionSelecting(map, $gpContainer);
-				}
 			
 				return map;
 			}
@@ -218,7 +197,7 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 					infowindow.open(gmap,marker);
 				});
 			
-				if (settings.routing) 
+				if (settings.mode == MapMode.ROUTING) 
 				{
 					marker.setMap(null);
 				}
@@ -281,6 +260,81 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				});
 			}
 			
+			// Creates the map with listener for selecting position
+			function CreatePositionSelecting(gmap, $gpContainer)
+			{			
+				// load in the crosshairs			
+				var $crosshairs = $("<div>").addClass("gp-crosshair");
+				$gpContainer.find(".gp-map").append($crosshairs);		
+							
+				// find the display controls
+				var $list = $gpContainer.find(".gp-selecting-controls");
+				var $lat = $list.find(".gp-lat");
+				var $lng = $list.find(".gp-lng");
+
+				var $latdebug = $list.find(".gp-lat-debug");
+				var $lngdebug = $list.find(".gp-lng-debug");
+						
+				google.maps.event.addListener(gmap, 'mouseup', function(event) {
+				
+					$lat.val(event.latLng.lat());
+					$lng.val(event.latLng.lng());
+			
+					// display the information for debug
+					if (settings.debug)
+					{
+						$latdebug.html(event.latLng.lat());
+						$lngdebug.html(event.latLng.lng());
+					}
+			
+				});
+			}
+			
+			function CreatePositionSelectingControls(gmap, $gpContainer)
+			{
+				var $list = $("<ul>").addClass("gp-selecting-controls");
+				
+				// create the search boxes
+				var $search = $("<li>").html("Search Address: &nbsp");
+				// create search box
+				var $searchBox = $("<input>").addClass("gp-search-box");
+				$searchBox.keyup(function(event){if(event.keyCode == 13){ $(this).siblings('input[type="button"]').click(); }});
+				// create search button
+				var $searchBtn = $("<input>").attr("type", "button").val("Search");
+				$searchBtn.click(function(){ 
+					var address = $(this).siblings(".gp-search-box").val(); 
+					Search(gmap, address);
+				});
+				$search.append($searchBox).append($searchBtn);
+				
+				var $lat = $("<li>").html("Latitude:").append($("<input>").attr("name", "lat").attr("type", "hidden").addClass("gp-lat"));
+				var $lng = $("<li>").html("Longitude:").append($("<input>").attr("name", "lng").attr("type", "hidden").addClass("gp-lng"));
+				
+				// display the information for debug
+				if (settings.debug)
+				{
+					$lat.append($("<div>").addClass("gp-lat-debug"));
+					$lng.append($("<div>").addClass("gp-lng-debug"));
+				}
+				
+				$list.append($search);
+				$list.append($lat);
+				$list.append($lng);
+				
+				$gpContainer.append($list);
+			}
+			
+			function Search(gmap, address)
+			{
+				var geocoder = new google.maps.Geocoder();
+				geocoder.geocode({'address': address}, function(results, status){
+					if (status == google.maps.GeocoderStatus.OK)
+					{
+						gmap.setCenter(results[0].geometry.location);
+					}
+				
+				});
+			}
 		}
 		
     }); // end of $.fn.extend

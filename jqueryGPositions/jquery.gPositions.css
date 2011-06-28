@@ -19,6 +19,7 @@ ul.gp-coordinate-container li
 	border-bottom: 1px solid black;
 }
 
+
 div.gp-coordinate{
 	cursor: pointer;
 	padding: .5em;
@@ -37,7 +38,28 @@ div.gp-coordinate{
 	padding-top: .5em;	
 }
 
-.gp-crosshair
+.gp-crosshair {
+    background: url("crosshair.gif") no-repeat scroll 0 0 transparent;
+    position: absolute;
+    height: 19px;
+    width: 19px;
+    left: 50%;
+    top: 50%;
+    z-index: 10;
+}
+
+ul.gp-selecting-controls
 {
-	z-index: 10;
+	list-style: none;
+	display: block;
+	float: left;
+}
+
+ul.gp-selecting-controls li
+{
+}
+
+.gp-lat-debug, .gp-lng-debug
+{
+	display: inline-block;
 }
