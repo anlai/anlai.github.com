@@ -36,3 +36,8 @@ div.gp-coordinate{
 .gp-description{
 	padding-top: .5em;	
 }
+
+.gp-crosshair
+{
+	z-index: 10;
+}

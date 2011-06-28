@@ -18,7 +18,8 @@
 			$(function(){
 							
 				$("#map").gPositions();
-				$("#map-with-routing").gPositions({routing: true});
+				$("#map-with-routing").gPositions({mode: MapMode.ROUTING});
+				$("#selectingpoint-map").gPositions({mode: MapMode.SELECTINGPOINT});
 				
 			});
 		
@@ -108,6 +109,21 @@
 				<div style="clear:both;"></div>
 			</section>
 			
+			<section>
+				
+				<header>
+					<h3>Map for Selecting Position</h3>
+				</header>
+				
+				<div id="selectingpoint-map" style="margin: 0px 0px 20px;">
+				
+					<div class="gp-map" style="height: 350px; width: 550px;"></div>
+					
+					<div style="clear:both;"></div>
+				
+				</div>
+				
+			</section>
 
 		</div>
 	

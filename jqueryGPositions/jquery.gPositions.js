@@ -20,6 +20,9 @@
 		And inside the div, divs with the coordinates in data attributes and having the class "coordinate"
 */
 
+/* enum for defining mode */
+var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
+
 (function($) {
 
     // attach this new method to jQuery
@@ -39,21 +42,24 @@
 				latitude:	38.537061, 
 				longitude:	-121.749174,
 				zoom:		16,
-				routing:	false,
+				mode:		MapMode.STANDARD,
 				mapType:	google.maps.MapTypeId.ROADMAP
 			}, options);
 		
 			return this.each(function(index,item){
 			
 				var $gpContainer = $(this);	// the map container
-				var $coordinates = $gpContainer.find(".gp-coordinate");
-				
 				// create the map object
 				var gmap = CreateMap($gpContainer);
-				
-				// creat the coordinate list for the user to select from
-				CreateCoordinateList($gpContainer, $coordinates);
-				BindCoordinateActions($gpContainer, $coordinates, gmap);	
+			
+				if (settings.mode == MapMode.STANDARD || settings.mode == MapMode.ROUTING)
+				{
+					var $coordinates = $gpContainer.find(".gp-coordinate");
+					
+					// create the coordinate list for the user to select from
+					CreateCoordinateList($gpContainer, $coordinates);
+					BindCoordinateActions($gpContainer, $coordinates, gmap);	
+				}
 			});
 		
 			/*
@@ -97,7 +103,7 @@
 				
 				var $selected = $gpContainer.find(".gp-selected");
 				
-				if ($selected.length > 1 && settings.routing)
+				if ($selected.length > 1 && settings.mode == gPositions.MapMode.ROUTING)
 				{
 					AdjustMapViewRouting($gpContainer, gmap);
 				}
@@ -137,13 +143,39 @@
 				}
 			}
 		
+			// Creates the map with listener for selecting position
+			function CreatePositionSelecting(map, $gpContainer)
+			{			
+				// load in the crosshairs
+				var $crosshairs = $("<img>").attr("src", "crosshair.gif").addClass("gp-crosshair");
+				
+				$gpContainer.prepend($crosshairs);
+			
+				google.maps.event.addListener(map, 'mouseup', function(event) {
+				
+					var test = event.latLng;
+					
+					alert(event.latLng.lat());
+					alert(event.latLng.lng());
+					
+					//debugger;
+				
+				});
+			}
+		
+			// Creates the standard map with selecting points / routing
 			function CreateMap($gpContainer)
 			{			
 				var latlng = new google.maps.LatLng(settings.latitude, settings.longitude);
 				var options = { zoom: settings.zoom, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP }
 			
 				var map = new google.maps.Map($gpContainer.find(".gp-map")[0], options);
-				
+			
+				if (settings.mode == MapMode.SELECTINGPOINT)
+				{
+					CreatePositionSelecting(map, $gpContainer);
+				}
+			
 				return map;
 			}
 		
@@ -246,6 +278,7 @@
 					AdjustMapView($gpContainer, gmap);
 				});
 			}
+			
 		}
 		
     }); // end of $.fn.extend
