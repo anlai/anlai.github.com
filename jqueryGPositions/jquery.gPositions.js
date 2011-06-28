@@ -43,6 +43,7 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				longitude:	-121.749174,
 				zoom:		16,
 				mode:		MapMode.STANDARD,
+				loadAll:	false,	// default to load all pins
 				mapType:	google.maps.MapTypeId.ROADMAP,
 				debug: 		false
 			}, options);
@@ -58,7 +59,7 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 					var $coordinates = $gpContainer.find(".gp-coordinate");
 					
 					// create the coordinate list for the user to select from
-					CreateCoordinateList($gpContainer, $coordinates);
+					CreateCoordinateList($gpContainer, $coordinates, gmap);
 					BindCoordinateActions($gpContainer, $coordinates, gmap);	
 				}
 				else
@@ -160,8 +161,10 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				return map;
 			}
 		
-			function CreateCoordinateList($gpContainer, $coordinates)
+			function CreateCoordinateList($gpContainer, $coordinates, gmap)
 			{
+				var hasDefault = false;
+			
 				var $list = $("<ul>").addClass("gp-coordinate-container");
 				//var $container = $("<div>").addClass("gp-coordinate-container").append($list);
 				
@@ -169,18 +172,47 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				
 					$list.append($("<li>").append(item));
 				
+					if (settings.loadAll)
+					{					
+						AddMarker(gmap, $(item));
+					}
+					// load in the default pin if specified
+					else
+					{
+						if ($(item).hasClass("gp-default"))
+						{
+							AddMarker(gmap, $(item));							
+							hasDefault = true;
+						}
+					}
+					
 				});
 				
 				$gpContainer.append($list);
+				
+				if (settings.loadAll || hasDefault)
+				{
+					AdjustMapView($gpContainer, gmap);
+				}
 			}
 		
 			/*
 				Creates the marker
 				
+				$selector: the div that holds the mapping information
 				return: returns the gmid number
 			*/
-			function AddMarker(latlng, title, description, gmap)
+			function AddMarker(gmap, $selector)
 			{
+				$selector.addClass("gp-selected");
+			
+				var lat = $selector.data("lat");
+				var lng = $selector.data("lng");
+				var latlng = new google.maps.LatLng(lat, lng);
+				
+				var title = $selector.find(".gp-name").html();
+				var description = $selector.find(".gp-description").html();
+			
 				var marker = new google.maps.Marker({
 					position: latlng, 
 					map: gmap, 
@@ -203,12 +235,15 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				}
 			
 				markers.push(marker);
-								
-				return marker.__gm_id;
+					
+				$selector.data("gmid", marker.__gm_id);
 			}
 			
-			function RemoveMarker(gmid)
-			{									
+			function RemoveMarker($selector)
+			{								
+				$selector.removeClass("gp-selected");
+				var gmid = $selector.data("gmid");
+			
 				// remove the marker from the map				
 				var marker, index;
 				
@@ -236,24 +271,11 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 					
 					if ($(this).hasClass("gp-selected"))
 					{
-						$(this).removeClass("gp-selected");
-						var gmid = $(this).data("gmid");		
-						RemoveMarker(gmid);
+						RemoveMarker($(this));
 					}
 					else
 					{
-						$(this).addClass("gp-selected");
-						
-						var lat = $(this).data("lat");
-						var lng = $(this).data("lng");
-						var latlng = new google.maps.LatLng(lat, lng);
-						
-						var title = $(this).find(".gp-name").html();
-						var description = $(this).find(".gp-description").html();
-						
-						var gmid = AddMarker(latlng, title, description, gmap);
-					
-						$(this).data("gmid", gmid);								
+						AddMarker(latlng, title, description, gmap, $(this));
 					}
 					
 					AdjustMapView($gpContainer, gmap);
