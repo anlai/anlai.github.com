@@ -275,7 +275,7 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 					}
 					else
 					{
-						AddMarker(latlng, title, description, gmap, $(this));
+						AddMarker(gmap, $(this));
 					}
 					
 					AdjustMapView($gpContainer, gmap);
