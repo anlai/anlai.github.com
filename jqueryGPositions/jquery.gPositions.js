@@ -97,6 +97,8 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				var $sideContainer = $("<div>").addClass("gp-sidecontainer");
 				$gpContainer.append($sideContainer);
 			
+				$sideContainer.append($("<div>").addClass("gp-sidecontainer-title").html("Locations").append($("<img>").attr("src", "question_blue.png")));
+			
 				switch(settings.mode)
 				{
 					case MapMode.STANDARD:

@@ -5,33 +5,50 @@
 /*
 	Styling for contents of the side information container
 */
-
 .gp-sidecontainer
 {
 	float: left;
 }
 
-.gp-sidecontainer .gp-coordinate
+.gp-sidecontainer-title
 {
+	font-weight: bold;
+	border-bottom: 1px solid lightGrey;
+	padding-left: 5px;
+}
+
+.gp-coordinate
+{
+	border-style: solid;
+	border-width: 1px;
+	margin: 5px 0;
 	cursor: pointer;
-	padding: .5em;
-	margin: 1em 0;
-	border-top: 1px solid black;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
+	-moz-border-radius: 0px 4px 4px 0px;
+	border-radius: 0px 4px 4px 0px;
+	border-left: 0px;
+	padding: 5px 5px 5px 10px;
+	background: white;
 }
 
-.gp-coordinate:first-child
+.gp-selected
 {
-	margin-top: .5em;
+	background-color: lightgray;
 }
 
-.gp-coordinate .gp-selected
+.gp-coordinate dt
 {
-	border: 1px solid red;
-	background-color: #FEF1EC;
+	font: 14px/22px 'QuicksandBook', Arial, sans-serif;
+	display: block;
 }
 
+.gp-coordinate dd
+{
+	margin-left: 0px;
+	font-family: Verdana, Sans-Serif;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	color: #555;
+}
 
 /*
 	Styling for the directions pane when enabled
@@ -54,69 +71,4 @@
 	background-color: #FEF1EC;
 	border: 1px solid #CD0A0A;
 	color: #CD0A0A;
-}
-
-
-
-
-ul.gp-coordinate-container 
-{
-	list-style: none;
-	display: block;
-	float: left;
-	margin-left: -40px;
-	margin-top: -10px;
-}
-
-ul.gp-coordinate-container li
-{
-	margin: 1em 0;
-	border-top: 1px solid black;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
-}
-
-
-div.gp-coordinate{
-	cursor: pointer;
-	padding: .5em;
-}
-
-.gp-selected
-{
-	background-color: #FEF1EC;
-}
-
-.gp-name
-{
-	font-weight: bold;
-}
-.gp-description{
-	padding-top: .5em;	
-}
-
-.gp-crosshair {
-    background: url("crosshair.gif") no-repeat scroll 0 0 transparent;
-    position: absolute;
-    height: 19px;
-    width: 19px;
-    left: 50%;
-    top: 50%;
-    z-index: 10;
-}
-
-ul.gp-selecting-controls
-{
-	list-style: none;
-	display: block;
-	float: left;
-}
-
-ul.gp-selecting-controls li
-{
-}
-
-.gp-lat-debug, .gp-lng-debug
-{
-	display: inline-block;
 }
