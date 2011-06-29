@@ -17,7 +17,7 @@
 			
 			$(function(){
 							
-				$("#map").gPositions();
+				$("#map").gPositions({loadAll: true});
 				$("#map-with-routing").gPositions({mode: MapMode.ROUTING, displayDirections: true});
 				$("#selectingpoint-map").gPositions({mode: MapMode.SELECTINGPOINT, debug: true});
 				

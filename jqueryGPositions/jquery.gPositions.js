@@ -48,7 +48,9 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				displayDirections:	false,
 				routeType:	google.maps.TravelMode.WALKING,
 				mapType:	google.maps.MapTypeId.ROADMAP,
-				debug: 		false
+				debug: 		false,
+				helpIcon: 	"question_blue.png",
+				showLocations: true
 			}, options);
 		
 			return this.each(function(index,item){
@@ -59,7 +61,7 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 			
 				// initialize the side information container
 				initializeSideContainer($gpContainer, gmap);
-			
+				
 				// attach events to the marker selctors
 				initializeEvents($gpContainer, gmap);
 			
@@ -97,20 +99,22 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				var $sideContainer = $("<div>").addClass("gp-sidecontainer");
 				$gpContainer.append($sideContainer);
 			
-				$sideContainer.append($("<div>").addClass("gp-sidecontainer-title").html("Locations").append($("<img>").attr("src", "question_blue.png")));
+				$sideContainer.append($("<div>").addClass("gp-sidecontainer-title").html("Locations").append($("<img>").attr("src", settings.helpIcon)));
 			
+                // put all the coordinates into the container
+				$sideContainer.append($gpContainer.find(".gp-coordinate"));
+
+                if (!settings.showLocations)
+                {
+                    $gpContainer.find(".gp-coordinate").hide();
+                }
+
 				switch(settings.mode)
 				{
 					case MapMode.STANDARD:
-					
-						// put all the coordinates into the container
-						$sideContainer.append($gpContainer.find(".gp-coordinate"));
-					
+										
 						break;
-					case MapMode.ROUTING:
-					
-						// put all the coordinates into the container
-						$sideContainer.append($gpContainer.find(".gp-coordinate"));
+					case MapMode.ROUTING:	
 					
 						if(settings.displayDirections)
 						{
@@ -152,8 +156,8 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 						$search.append($searchBox).append($searchBtn);
 						
 						$ctlList.append($search);
-						$ctlList.append($("<input>").attr("type", "hidden").attr("name", "gp-lat").addClass("gp-lat"));
-						$ctlList.append($("<input>").attr("type", "hidden").attr("name", "gp-lng").addClass("gp-lng"));
+						$ctlList.append($("<input>").attr("type", "hidden").attr("name", "Latitude").addClass("gp-lat"));
+						$ctlList.append($("<input>").attr("type", "hidden").attr("name", "Longitude").addClass("gp-lng"));
 						
 						break;
 					default:
@@ -419,12 +423,41 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 			// load the default coordinates
 			function defaultCoordinates($gpContainer, gmap)
 			{
-				var defaultcoord = $gpContainer.find(".gp-sidecontainer .gp-default");
+				if (settings.loadAll){
+					
+					$.each($gpContainer.find(".gp-coordinate"), function(index,item){
+					
+						AddMarker(gmap, $(item));
+						AdjustMapView($gpContainer, gmap);
+					
+					});
+					
+				}
+				else {
 				
-				if (defaultcoord[0] != undefined)
-				{
-					AddMarker(gmap, $(defaultcoord[0]));
-					AdjustMapView($gpContainer, gmap);
+					var defaultcoord = $gpContainer.find(".gp-sidecontainer .gp-default");
+					
+					if (defaultcoord[0] != undefined)
+					{
+						if (settings.mode == MapMode.STANDARD || settings.mode == MapMode.ROUTING)
+						{					
+							AddMarker(gmap, $(defaultcoord[0]));
+							AdjustMapView($gpContainer, gmap);
+						}
+						else if (settings.mode == MapMode.SELECTINGPOINT)
+						{
+							// set the center of the map to this point
+							var lat = $(defaultcoord[0]).data("lat");
+							var lng = $(defaultcoord[0]).data("lng");
+							
+							setSearchResult(gmap, $gpContainer, lat, lng);
+						}
+					}
+					else if (settings.mode == MapMode.SELECTINGPOINT)
+					{
+						setSearchResult(gmap, $gpContainer, settings.latitude, settings.longitude);
+					}
+				
 				}
 			}
 		
@@ -434,58 +467,35 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				geocoder.geocode({'address': address}, function(results, status){
 					if (status == google.maps.GeocoderStatus.OK)
 					{
-						gmap.setCenter(results[0].geometry.location);
-						
-						// set the location
-						var $latInput = $resultContainer.find(".gp-lat");
-						var $lngInput = $resultContainer.find(".gp-lng");
-						
-						$latInput.val(results[0].geometry.location.lat());
-						$lngInput.val(results[0].geometry.location.lng());
-						
-						if (settings.debug)
-						{
-							var $latdebug = $resultContainer.find(".gp-lat-debug");
-							var $lngdebug = $resultContainer.find(".gp-lng-debug");
-							
-							$latdebug.html(results[0].geometry.location.lat());
-							$lngdebug.html(results[0].geometry.location.lng());
-						}
-						
+                        var location = results[0].geometry.location;
+                        setSearchResult(gmap, $resultContainer, location.lat(), location.lng()); 
 					}
 				});
 			}
 		
-		
-		
+		    function setSearchResult(gmap, $container, lat, lng)
+            {
+                var latlng = new google.maps.LatLng(lat, lng);
 
-			
-			
-			function CreatePositionSelectingControls(gmap, $gpContainer)
-			{
-				var $list = $("<ul>").addClass("gp-selecting-controls");
-				
-				var $lat = $("<li>").html("Latitude:").append($("<input>").attr("name", "lat").attr("type", "hidden").addClass("gp-lat"));
-				var $lng = $("<li>").html("Longitude:").append($("<input>").attr("name", "lng").attr("type", "hidden").addClass("gp-lng"));
-				
-				// display the information for debug
+                gmap.setCenter(latlng);
+
+                // set the location
+				var $latInput = $container.find(".gp-lat");
+				var $lngInput = $container.find(".gp-lng");
+						
+				$latInput.val(lat);
+				$lngInput.val(lng);
+						
 				if (settings.debug)
 				{
-					$lat.append($("<div>").addClass("gp-lat-debug"));
-					$lng.append($("<div>").addClass("gp-lng-debug"));
+					var $latdebug = $container.find(".gp-lat-debug");
+					var $lngdebug = $container.find(".gp-lng-debug");
+							
+					$latdebug.html(lat);
+					$lngdebug.html(lng);
 				}
-				
-								
-				
-				
-				$list.append($search);
-				$list.append($lat);
-				$list.append($lng);
-				
-				$gpContainer.append($list);
-			}
-			
-
+            }
+		
 		}
 		
     }); // end of $.fn.extend
