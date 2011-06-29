@@ -10,6 +10,11 @@
 	float: left;
 }
 
+.gp-sidecontainer ul, .gp-sidecontainer 
+{
+	list-style: none;
+}
+
 .gp-sidecontainer-title
 {
 	font-weight: bold;
