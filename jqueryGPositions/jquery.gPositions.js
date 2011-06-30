@@ -413,9 +413,7 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 			{			
 				var $directions = $gpContainer.find(".gp-directionlist");
 				$directions.empty();
-				
-				//debugger;
-				
+								
 				$.each(results.routes[0].legs, function(index,item){
 				
 					// add in the actual marker location
