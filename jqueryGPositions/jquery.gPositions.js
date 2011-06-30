@@ -99,7 +99,16 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				var $sideContainer = $("<div>").addClass("gp-sidecontainer");
 				$gpContainer.append($sideContainer);
 			
-				$sideContainer.append($("<div>").addClass("gp-sidecontainer-title").html("Locations").append($("<img>").attr("src", settings.helpIcon)));
+				if (settings.mode == MapMode.STANDARD || settings.mode == MapMode.ROUTING)
+				{
+					$sideContainer.append($("<div>").addClass("gp-sidecontainer-title").html("Locations").append($("<img>").attr("src", settings.helpIcon)));
+				}
+				else if (settings.mode == MapMode.SELECTINGPOINT)
+				{
+					$sideContainer.append($("<div>").addClass("gp-sidecontainer-title").html("Search Location").append($("<img>").attr("src", settings.helpIcon)));
+				}
+			
+				
 			
                 // put all the coordinates into the container
 				$sideContainer.append($gpContainer.find(".gp-coordinate"));
