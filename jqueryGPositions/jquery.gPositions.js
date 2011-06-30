@@ -118,7 +118,14 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 					
 						if(settings.displayDirections)
 						{
-							$gpContainer.append($("<div>").addClass("gp-directions"));
+							var $directions = $("<div>").addClass("gp-directions");
+							var $title = $("<div>").addClass("gp-sidecontainer-title").html("Directions");
+							$title.append($("<img>").attr("src", settings.helpIcon));
+							
+							var $dlist = $("<ul>").addClass("gp-directionlist");
+							
+							$gpContainer.append($directions.append($title));
+							$gpContainer.append($dlist);
 						}
 					
 						break;
@@ -404,17 +411,33 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 			*/
 			function DisplayDirections($gpContainer, results)
 			{			
-				var $directions = $gpContainer.find(".gp-directions");
+				var $directions = $gpContainer.find(".gp-directionlist");
 				$directions.empty();
-				var $list = $("<ul>");
 				
-				for(i = 0; i < markers.length; i++)
-				{
-					// split in the mark icon here too
-					$list.append($("<li>").html(markers[i].title));
-				}
+				//debugger;
 				
-				$directions.append($list);
+				$.each(results.routes[0].legs, function(index,item){
+				
+					// add in the actual marker location
+					$directions.append($("<li>").html(markers[index].title).addClass("gp-waypt"));
+					
+					var $steps = $("<ol>").addClass("gp-steps");
+					
+					// add in the directions
+					$.each(item.steps, function(index2, item2){
+						$steps.append($("<li>").html(item2.instructions).addClass("gp-step"));
+					});
+				
+					$directions.append($steps);
+				
+					//debugger;
+					// add in the marker for the last location
+					if (index == markers.length - 2)
+					{
+						$directions.append($("<li>").html(markers[index+1].title).addClass("gp-waypt"));	
+					}
+				
+				});
 			}
 		
 			/*****************************************************************

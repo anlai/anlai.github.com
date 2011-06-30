@@ -68,9 +68,20 @@
 	clear: both;
 }
 
-.gp-directions ul
+.gp-directionlist
 {
 	list-style: none;
+}
+
+.gp-waypt
+{
+	background: lightgray;
+	padding: .5em;
+}
+
+.gp-steps
+{
+	margin-left: 0px;
 }
 
 /*
