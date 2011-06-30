@@ -124,8 +124,7 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 							
 							var $dlist = $("<ul>").addClass("gp-directionlist");
 							
-							$gpContainer.append($directions.append($title));
-							$gpContainer.append($dlist);
+							$gpContainer.append($directions.append($title).append($dlist));
 						}
 					
 						break;
