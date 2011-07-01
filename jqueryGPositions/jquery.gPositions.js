@@ -425,7 +425,7 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 				$.each(results.routes[0].legs, function(index,item){
 				
 					// add in the actual marker location
-					$directions.append($("<li>").html(markers[index].title).addClass("gp-waypt"));
+					$directions.append($("<li>").html(markers[index].title).addClass("gp-waypt").prepend($("<span>").html(alpha[index]).addClass("marker")));
 					
 					var $steps = $("<ol>").addClass("gp-steps");
 					
@@ -440,7 +440,7 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 					// add in the marker for the last location
 					if (index == markers.length - 2)
 					{
-						$directions.append($("<li>").html(markers[index+1].title).addClass("gp-waypt"));	
+						$directions.append($("<li>").html(markers[index+1].title).addClass("gp-waypt").prepend($("<span>").html(alpha[index+1]).addClass("marker")));	
 					}
 				
 				});

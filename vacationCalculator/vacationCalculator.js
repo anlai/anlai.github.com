@@ -63,7 +63,7 @@ function AvailableHours (lastPayDate, timeAccrued, timeAccruedMonth, targetDate)
 function CalculateNeededHours(startVacation, endVacation, hoursPerDay)
 {
 	var businessDays = CalculateBusinessDays(startVacation, endVacation);
-	
+	debugger;
 	return businessDays * hoursPerDay;
 }
 

@@ -90,6 +90,8 @@
 	padding: .25em;
 }
 
+.marker {background: url(greenmarker.png) no-repeat; padding: 1px 0 0 6px; width: 18px; height: 37px; display: inline-block; font-family: Arial, sans-serif; font-size: 15px; margin-right: 10px;}
+
 /*
 	Styling for selecting points
 */
@@ -99,3 +101,4 @@
 	border: 1px solid #CD0A0A;
 	color: #CD0A0A;
 }
+
