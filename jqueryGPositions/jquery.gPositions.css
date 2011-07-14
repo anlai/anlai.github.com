@@ -2,6 +2,16 @@
 	float: left;
 }
 
+.gp-crosshair {
+   background: url("../Images/crosshair.gif") no-repeat scroll 0 0 transparent;
+   position: absolute;
+   height: 19px;
+   width: 19px;
+   left: 50%;
+   top: 50%;
+   z-index: 10;
+}
+
 /*
 	Styling for contents of the side information container
 */
@@ -90,7 +100,7 @@
 	padding: .25em;
 }
 
-.marker {background: url(greenmarker.png) no-repeat; padding: 1px 0 0 6px; width: 18px; height: 37px; display: inline-block; font-family: Arial, sans-serif; font-size: 15px; margin-right: 10px;}
+.marker {background: url('../Images/greenmarker.png') no-repeat; padding: 1px 0 0 6px; width: 18px; height: 37px; display: inline-block; font-family: Arial, sans-serif; font-size: 15px; margin-right: 10px;}
 
 /*
 	Styling for selecting points

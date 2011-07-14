@@ -220,17 +220,24 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 						// add the listener
 						google.maps.event.addListener(gmap, 'mouseup', function(event) {
 						
-							$lat.val(event.latLng.lat());
-							$lng.val(event.latLng.lng());
+                            var centerOfMap = gmap.getCenter();
+
+							$lat.val(centerOfMap.lat());
+							$lng.val(centerOfMap.lng());
+                            
+               
 					
 							// display the information for debug
 							if (settings.debug)
 							{
-								$latdebug.html(event.latLng.lat());
-								$lngdebug.html(event.latLng.lng());
+//								$latdebug.html(event.latLng.lat());
+//								$lngdebug.html(event.latLng.lng());
+                                $latdebug.html(centerOfMap.lat());
+								$lngdebug.html(centerOfMap.lng());
 							}
 				
 						});
+
 					
 						break;
 					default:
@@ -401,17 +408,19 @@ var MapMode = { STANDARD: 0, ROUTING: 1, SELECTINGPOINT: 2 };
 						wayPts.push({location: markers[i].position, stopover: true});
 					}
 				}
+				if(src != undefined)
+                {
+				    var request = {origin: src.position, destination: dest.position, waypoints: wayPts, travelMode: settings.routeType};
 				
-				var request = {origin: src.position, destination: dest.position, waypoints: wayPts, travelMode: settings.routeType};
-				
-				directionsService.route(request, function(result, status)
-					{				
-						if (status == google.maps.DirectionsStatus.OK)
-						{
-							if (settings.displayDirections) {DisplayDirections($gpContainer, result)};
-							directionDisplay.setDirections(result);
-						}
-					});
+				    directionsService.route(request, function(result, status)
+					    {				
+						    if (status == google.maps.DirectionsStatus.OK)
+						    {
+							    if (settings.displayDirections) {DisplayDirections($gpContainer, result)};
+							    directionDisplay.setDirections(result);
+						    }
+					    });
+                }
 			}
 		
 			/*
