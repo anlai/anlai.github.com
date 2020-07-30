@@ -3,3 +3,6 @@
 Thumbs.db
 #Ignore files build by Visual Studio
 bingMapsKey.js
+
+_site/
+.jekyll-cache/

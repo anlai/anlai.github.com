@@ -1,56 +1,14 @@
-<!DOCTYPE html>
+---
+layout: home
+---
 
-	<head>
-		<title>Alan Lai's Github Demos</title>
-		
-		<link rel='stylesheet' type='text/css' href='main.css' />
-	</head>
-	
-	<body>
-	
-		<div id="header"></div>
-		
-		<div id="main">
-		
-			<h2>Alan Lai's Github Demos</h2>
-		
-			<ul>
-				<li><strong>Jquery Google Maps</strong>
-					<ul>
-						<li><strong><a href="jqueryGPositions/gPositions.html">Google Maps Demo</a></strong></li>
-					</ul>
-				</li>
-				<li><strong>Jquery Bing Maps</strong>
-					<ul>
-						<li><strong><a href="jqueryBingMaps/bingmaps.html">Basic Map</a></strong>
-						</li>
-						<li><strong><a href="jqueryBingMaps/bingmaps_routing.html">Basic Map with Routing</a></strong>
-						</li>
-					</ul>
-				</li>
-				<li><strong>Jquery UI Bing Maps</strong>
-					<ul>
-						<li><strong><a href="jqueryUIBingMaps/bingmapsUI.html">Basic Map</a></strong>
-						</li>
-					</ul>
-				</li>
-				<li><strong>Vacation Calculator</strong>
-					<ul>
-						<li><strong><a href="vacationCalculator/index.html">Calculator</a></strong>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		
+<div class="header-spacer home">
+	<div class="container">
+		{{ site.description }}
+		<div class="btns">
+			<a href="{{ site_url + '/blog/' }}" class="btn btn-secondary">Blog</a>
+			<a href="{{ site_url + '/resume/' }}" class="btn btn-secondary">Resume</a>
+			<a href="{{ '/samples/' | relative_url }}" class="btn btn-secondary">Samples</a>
 		</div>
-
-		<div id="footer">
-			<div id="footer_text">
-			Written by Alan Lai | 
-			<a href="https://github.com/anlai/">View My Github</a>
-			</div>
-		</div>
-		
-	</body>
-
-</html>
+	</div>
+</div>
