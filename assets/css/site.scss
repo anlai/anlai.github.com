@@ -20,6 +20,7 @@ body {
 }
 a { color: $secondarytext; }
 a:hover { color: $lightprimarytext; text-decoration: none; }
+h3 { color: $secondarytext; }
 
 .container {
     max-width: 960px;
@@ -27,6 +28,7 @@ a:hover { color: $lightprimarytext; text-decoration: none; }
     margin-right: auto;
 }
 
+/* horizontal lists divided by a dot */
 .horizontal-spaced-list a:not(:last-child):after, .horizontal-spaced-list span:not(:last-child):after {
     margin-left: 5px;
     margin-right: 5px;
@@ -38,7 +40,6 @@ a:hover { color: $lightprimarytext; text-decoration: none; }
    ====================== */
 
 .top-spacer { position: top; height: 80px; }
-
 .header-half-spacer { height: 150px; }
 .header-spacer { height: 300px; }
 .header-spacer, .header-half-spacer {  
@@ -46,17 +47,13 @@ a:hover { color: $lightprimarytext; text-decoration: none; }
     background: rgb(0,0,0);
     background: linear-gradient(172deg, rgba(0,0,0,1) 0%, $secondarytext 100%);
 }
-.header-spacer .container {
+.header-half-spacer .container { top: 75px; }
+.header-spacer .container { top: 125px; }
+.header-spacer .container, .header-half-spacer .container {
     text-align: center;
     font-size: 1.5em;
     color: $white;
     position: relative;
-    top: 125px;
-}
-#header-image {
-    background-image: url('/assets/images/nasa-wide.jpg');
-    position: top;
-    height: 300px;     
 }
 
 /* navbar style when at the top of the page */
@@ -71,7 +68,6 @@ a:hover { color: $lightprimarytext; text-decoration: none; }
     box-shadow: none;
     color: $white;
 }
-
 .navbar a { color: $white; }
 
 /* when scrolled down */
@@ -100,84 +96,25 @@ footer .footer-social, footer .footer-owner {
 /* ======================
     Home Styles
    ====================== */
-
 .header-spacer.home { height: 100vh; }
 .header-spacer.home .container { top: 30vh; }
 .header-spacer.home .container .btns { margin-top: $itemspacing; }
 
-
 /* ======================
-    Resume Styles
+    Blog Styles
    ====================== */
 
-.resume-container {
-    max-width: 960px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.resume-container #profile-img {
-    text-align: center;
-    height: 120px;
-}
-.resume-container #profile-img img {
-    position: relative;
-    border-radius: 50%;
-    height: 200px;
-    width: 200px;
-    top: -100px;
-}
-
-#background h3 {
-    border-bottom: none;
-}
-#contact, #social-networks{
+.container.post {
     margin-bottom: $itemspacing;
+    padding-bottom: $itemspacing;
 }
-#contact span:not(:last-child):after {
-    margin: 0 7px 0 10px;
-    color: $primarytext;
-    font-weight: 700;
-    content: "\00B7";
-}
+.container.post:first-child { margin-top: $itemspacing; }
+.container.post:not(:last-child) { border-bottom: 1px solid $lightaccent; }
+.post-meta { color: $lightprimarytext; margin-bottom: $itemspacing; }
+.post-meta:before { content: 'Posted on: ' }
+.post-tags { margin-top: $itemspacing; }
 
-.resume-container section { 
-    margin-top: $itemspacing;
-    margin-bottom: $itemspacing;
-}
-.resume-container section h3 {  
-    text-align: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid black;
-    font-variant: small-caps;
-}
+ul.pager { text-align: center; list-style: none; }
+ul.pager li {display: inline;border: 1px solid black; padding: 10px; margin: 5px;}
 
-.resume-container #background {
-    text-align: center;
-}
-
-.resume-item {
-    margin-bottom: $itemspacing;;
-}
-.resume-item-header {
-}
-.resume-item-title {
-    font-weight: 600;
-}
-.resume-item-title:after { content: ', ' }
-.resume-item-title.no-comma:after { content: '' }
-.resume-item-type {}
-.resume-item-type:after { content: ',' }
-.resume-item-company {}
-.resume-item-dates { 
-    color: $greytext; 
-    font-size: 80%;
-}
-.resume-item-list {}
-
-.badge-list {  
-    list-style: none;
-}
-.badge-list li {
-    float: left;
-    margin-right: 7px;
-}
+.page-navigation { text-align: center; margin-top: 2*$itemspacing; }

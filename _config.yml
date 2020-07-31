@@ -16,3 +16,18 @@ social:
     url: https://github.com/anlai
   - type: linkedin
     url: https://www.linkedin.com/in/alan-n-lai/
+
+# Build settings
+plugins:
+  - jekyll-feed
+  - jekyll-paginate-v2
+
+# Pagination Settings
+pagination:
+  enabled: true
+  per_page: 3
+  permalink: '/page/:num/'
+  title_suffix: ' - page :num'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true

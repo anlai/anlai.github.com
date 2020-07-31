@@ -27,8 +27,9 @@
 
                 <nav class="my-2 my-md-0 mr-md-3">
                     <a class="p-2" href="{{ '/' | relative_url }}">Home</a>
-                    <a class="p-2" href="{{ site_url + '/blog/' }}">Blog</a>
-                    <a class="p-2 selected" href="{{ site_url + '/resume/' }}">Resume</a>
+                    <a class="p-2 {% if page.selected == 'blog' %}selected{% endif %}" href="{{ site_url + '/blog/' }}">Blog</a>
+                    <a class="p-2 {% if page.selected == 'resume' %}selected{% endif %}" href="{{ site_url + '/resume/' }}">Resume</a>
+                    <a class="p-2 {% if page.selected == 'samples' %}selected{% endif %}" href="{{ site_url + '/samples/' }}">Samples</a>
                 </nav>
             </div>
         </div>

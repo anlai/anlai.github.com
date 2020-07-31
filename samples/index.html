@@ -1,0 +1,21 @@
+---
+layout: default
+selected: samples
+---
+
+<div class="header-half-spacer">
+    <div class="container">
+        <h2>Sample Projects</h2>
+    </div>
+</div>
+
+<div class="container">
+
+    {% for project in site.data.samples %}
+
+        <h3>{{ project.name }}</h3>
+        <p>{{ project.description }}</p>
+
+    {% endfor %}
+
+</div>

@@ -1,0 +1,9 @@
+- name: project 1
+  url: https://github.com/anlai/project1
+  description: Description of the project goes here
+- name: project 2
+  url: https://github.com/anlai/project2
+  description: Description of the project goes here
+- name: project 3
+  url: https://github.com/anlai/project3
+  description: Description of the project goes here
