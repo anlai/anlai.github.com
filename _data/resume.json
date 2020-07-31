@@ -1,0 +1,236 @@
+{
+    "basics": {
+        "name": "Alan Lai",
+        "label": "Software Engineer",
+        "email": "alan.lai@outlook.com",
+        "website": "alanlai.me",
+        "summary": "ABOUT ME",
+        "location": {
+            "city": "Fairfield",
+            "postalCode": "CA 94534",
+            "countryCode": "US",
+            "region": "California"
+        },
+        "profiles": [
+            {
+                "network": "LinkedIn",
+                "username": "alan-n-lai",
+                "url": "https://www.linkedin.com/in/alan-n-lai/"
+            },
+            {
+                "network": "Github",
+                "username": "anlai",
+                "url": "https://github.com/anlai"           
+            }
+        ]
+    },
+    "work": [
+        {
+            "company": "Chevron",
+            "position": "Senior Software Engineer/Product Owner",
+            "website": "https://chevron.com",
+            "startDate": "2019-01-01",
+            "endDate": "",
+            "summary": "Product Owner for various Azure public cloud services within Chevron IT, Public Cloud Program.  Lead teams to deliver critical automation and practices for Chevron public cloud services and worked to enable and accelerate the adoption of Microsoft Azure across the Chevron enterprise.",
+            "highlights": [
+                "Lead the team responsible for enterprise DevOps pipeline (and related tools Azure DevOps, Jenkins, SonarQube), Microsoft Azure PaaS Services, and enterprise supported code packages (NuGet, NPM, etc.).",
+                "Lead the team to develop self-service automations, to enable adoption of Microsoft Azure public cloud services.  Team developed self-service portals in Service Now platform.",
+                "Lead developer on enterprise wide automation orchestration middleware (Node.js, NPM, Angular, Azure Cosmos DB).  Facilitated application to cloud inventory, provisioning automation, cloud infrastructure information store.  Used as the system to facilitate enterprise developed automated processes.",
+                "Developed several tools to focus on customer experience, enterprise documentation site (Node.js) and enterprise services status site with automated communications (.NET Core).  Enabling customers to be more aware of how to take advantage of services and be aware of any issues within the ecosystem."
+            ]
+        },
+        {
+            "company": "Chevron",
+            "position": "DevOps Lead",
+            "website": "https://chevron.com",
+            "startDate": "2017-01-01",
+            "endDate": "2019-01-01",
+            "summary": "DevOps lead within Chevron Global Downstream, Technical Standards group.  Evangelized the adoption of DevOps practices within Downstream IT Operations, and worked with corporate IT groups to promote use case and accelerate adoption of practices across the enterprise.",
+            "highlights": [
+                "Build an enterprise CI/CD pipeline used across Downstream IT Operations group (Jenkins, Groovy).  Supported the build and deployment process for 70+ applications (across wide range of technologies, including .NET, Java, and vendor DSL/products), and enforced compliance with enterprise standards.",
+                "Worked across enterprise IT to accelerate the adoption of DevOps practices, automation.",
+                "Established some of the patterns and practices for enterprise CI/CD at Chevron for on-premise deployments and the migration to Microsoft Azure and public cloud services."
+            ]
+        },
+        {
+            "company": "Chevron",
+            "position": ".NET Technical Lead",
+            "website": "https://chevron.com",
+            "startDate": "2013-06-01",
+            "endDate": "2017-01-01",
+            "summary": "Technical lead for .NET based applications within Chevron Global Downstream, Manufacturing Global Applications group.  Oversaw the development and support of .NET applications used by the downstream manufacturing refinery locations worldwide.",
+            "highlights": [
+                "Lead the development of a global IT inventory and compliance application for manufacturing operations.  Worked with stakeholders, developers, and end users throughout SDLC to design, develop, and test the application.  Application supports various IT inventory items and simplified the process for keeping infrastructure compliant with all relevant audit requirements.",
+                "Developed NuGet packages for common design and functionality for corporate standards around branding standards and company directory.  Promoted the usage of the packages within the Downstream IT Operations group.",
+                "Worked with corporate IT groups to research and develop patterns and practices around Cloud application hosting.  Developed NuGet packages in support of cloud patterns and security."
+            ]
+        },
+        {
+            "company": "University of California, Davis",
+            "position": "Senior Application & Systems Developer",
+            "website": "https://ucdavis.edu",
+            "startDate": "2008-03-01",
+            "endDate": "2013-06-01",
+            "summary": "",
+            "highlights": []
+        },
+        {
+            "company": "University of California, Davis",
+            "position": "Application Developer",
+            "website": "https://ucdavis.edu",
+            "startDate": "2006-01-01",
+            "endDate": "2008-03-01",
+            "summary": "",
+            "highlights": []
+        }
+    ],
+    "education": [
+        {
+            "institution": "California State University, Sacramento",
+            "area": "Software Engineering",
+            "studyType": "Master",
+            "startDate": "2008-09-01",
+            "endDate": "2011-06-01"
+        },
+        {
+            "institution": "University of California, Davis",
+            "area": "Computer Science",
+            "studyType": "Bachelor",
+            "startDate": "2002-09-01",
+            "endDate": "2006-06-01"
+        }
+    ],
+    "certifications": [
+        {
+            "name": "Certified SAFe Agile Product and Solution Manager",
+            "startDate": "2019-12-18",
+            "endDate": "2020-12-18",
+            "organization": "Scaled Agile, Inc.",
+            "url": "https://community.scaledagile.com/"
+        }
+    ],
+    "publications": [{
+        "name": "2-SQUARE: A Web-Based Enhancement of SQUARE Privacy and Security Requirements Engineering",
+        "publisher": "International Journal of Software Innovation (IJSI)",
+        "releaseDate": "2013-03-01",
+        "website": "https://www.igi-global.com/journal/international-journal-software-innovation/64245",
+        "summary": "DESCRIPTION HERE"
+    }],
+    "skills": [
+        {
+            "name": "Backend Developer",
+            "level": "expert",
+            "keywords": [".NET Core", ".NET Framework", "NuGet", "WebForms", "VB", "MS SQL", "Entity Framework", "Dapper ORM", "Express", "NPM", "Docker"],
+            "skill": [
+                { "name": ".NET Core", "level": "proficient" },
+                { "name": ".NET Framework", "level": "expert" },
+                { "name": "MS SQL", "level": "expert" },
+                { "name": "Entity Framework", "level": "proficient" },
+                { "name": "Dapper ORM", "level": "proficient" },
+                { "name": "NuGet", "level": "proficient" },
+                { "name": "WebForms", "level": "proficient" },
+                { "name": "VB", "level": "proficient" },
+                { "name": "Express", "level": "proficient" },
+                { "name": "NPM", "level": "proficient" },
+                { "name": "Docker", "level": "beginner" }
+            ]
+        },
+        {
+            "name": "Web Developer",
+            "level": "proficient",
+            "keywords": ["HTML", "CSS", "Angular", "jQuery", ".NET MVC", ".NET Razor"],
+            "skill": [
+                { "name": "HTML", "level": "proficient" },
+                { "name": "CSS", "level": "proficient" },
+                { "name": "Angular", "level": "proficient" },
+                { "name": "jQuery", "level": "expert" },
+                { "name": ".NET MVC", "level": "expert" },
+                { "name": ".NET Razor", "level": "expert" }
+            ]
+        },
+        {
+            "name": "Cloud",
+            "level": "expert",
+            "keywords": ["Azure", "Azure App Service", "Azure Functions", "Azure Traffic Manager", "Azure Cosmos DB", "Azure Table Storage", "Azure Storage", "Azure Resource Manager (ARM) Templates", "Application Insights", "SendGrid"],
+            "skill": [
+                { "name": "Azure", "level": "expert" },
+                { "name": "Azure App Service", "level": "expert" },
+                { "name": "Azure Functions", "level": "expert" },
+                { "name": "Azure Traffic Manager", "level": "proficient" },
+                { "name": "Azure Cosmos DB", "level": "proficient" },
+                { "name": "Azure Table Storage", "level": "proficient" },
+                { "name": "Azure Storage", "level": "expert" },
+                { "name": "Azure Resource Manager (ARM) Templates", "level": "proficient" },
+                { "name": "Application Insights", "level": "expert" },
+                { "name": "Send Grid", "level": "proficient" }
+            ]
+        },
+        {
+            "name": "Development Tools",
+            "level": "expert",
+            "keywords": ["Visual Studio", "Visual Studio Code", "Git", "Github", "Git-Flow", "SonarQube", "Micro Focus Fortify", "Swagger", "Open API", "Grunt", "MS SQL", "Mongo DB"],
+            "skill": [
+                { "name": "Visual Studio", "level": "expert" },
+                { "name": "Visual Studio Code", "level": "expert" },
+                { "name": "Git", "level": "expert" },
+                { "name": "Github", "level": "proficient" },
+                { "name": "Git-Flow", "level": "expert" },
+                { "name": "SonarQube", "level": "proficient" },
+                { "name": "Micro Focus Fortify", "level": "proficient" },
+                { "name": "Swagger", "level": "proficient" },
+                { "name": "Open API", "level": "proficient" },
+                { "name": "Grunt", "level": "proficient" },
+                { "name": "MS SQL", "level": "proficient" },
+                { "name": "Mongo DB", "level": "proficient" } 
+            ]
+        },
+        {
+            "name": "DevOps Tools",
+            "level": "proficient",
+            "keywords": ["Azure DevOps", "Azure DevOps Pipelines", "Ansible", "Jenkins", "Powershell", "Bash"],
+            "skill": [
+                { "name": "Azure DevOps", "level": "proficient" },
+                { "name": "Azure DevOps Pipelines", "level": "proficient" },
+                { "name": "Ansible", "level": "proficient" },
+                { "name": "Jenkins", "level": "proficient" },
+                { "name": "Powershell", "level": "proficient" },
+                { "name": "Bash", "level": "proficient" }                
+            ]
+        },
+        {
+            "name": "Languages",
+            "level": "proficient",
+            "keywords": ["C#", "JavaScript", "TypeScript", "T-SQL"],
+            "skill": [
+                { "name": "C#", "level": "expert" },
+                { "name": "JavaScript", "level": "proficient" },
+                { "name": "TypeScript", "level": "proficient" },
+                { "name": "T-SQL", "level": "proficient" }
+            ]
+        },
+        {
+            "name": "Work Management",
+            "level": "proficient",
+            "keywords": ["SAFe Agile", "Azure DevOps Work Items", "Scrum", "Agile", "Jira"],
+            "skill": [
+                { "name": "SAFe Agile", "level": "proficient" },
+                { "name": "Azure DevOps Work Items", "level": "proficient" },
+                { "name": "Scrum", "level": "proficient" },
+                { "name": "Agile", "level": "proficient" },
+                { "name": "Jira", "level": "proficient" }
+            ]
+        }
+    ],
+    "languages": [
+        {
+            "language": "English",
+            "fluency": "Native speaker"
+        }
+    ],
+    "references": [
+        {
+            "name": "By Request",
+            "reference": "References available by request"
+        }
+    ]
+}

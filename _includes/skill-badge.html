@@ -1,0 +1,13 @@
+{% assign badgeclass = "badge-light" %}
+{% case include.level %}
+    {% when "beginner" %}
+        {% assign badgeclass = "badge-info" %}
+    {% when "proficient" %}
+        {% assign badgeclass = "badge-primary" %}
+    {% when "expert" %}
+        {% assign badgeclass = "badge-success" %}
+{% endcase %}
+
+<span class="badge {{ badgeclass }}">
+    {{ include.name }}
+</span>

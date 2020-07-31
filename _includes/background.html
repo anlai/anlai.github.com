@@ -1,0 +1,22 @@
+{% assign basics = include.basics %}
+
+<section id="background">
+    <h2>{{basics.name}}</h2>
+    <h3>{{basics.label}}</h3>
+
+    <div id="contact">
+        <span><a href="{{ basics.website }}"><i class="fas fa-link"></i> {{ basics.website }}</a></span>
+        <span><a href="mailto:{{ basics.email }}"><i class="far fa-envelope"></i> {{ basics.email }}</a></span>
+        <span><i class="fas fa-map-marker-alt"></i> {{ basics.location.city }}, {{ basics.location.region }}</span>
+    </div>
+
+    <div id="social-networks">
+        {% for network in basics.profiles %}
+            <a href="{{ network.url }}">
+                <i class="fab fa-{{ network.network | downcase }}"></i>
+            </a>
+        {% endfor %}
+    </div>
+
+    <p>{{ basics.summary }}</p>
+</section>

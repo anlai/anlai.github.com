@@ -35,6 +35,11 @@ h3 { color: $secondarytext; }
     content: "\00B7";
 }
 
+.horizontal-spaced-comma-list a:not(:last-child):after, .horizontal-spaced-comma-list span:not(:last-child):after {
+    // margin-right: 2px;
+    content: ", ";
+}
+
 /* ======================
     Header Site Styles
    ====================== */
@@ -118,3 +123,68 @@ ul.pager { text-align: center; list-style: none; }
 ul.pager li {display: inline;border: 1px solid black; padding: 10px; margin: 5px;}
 
 .page-navigation { text-align: center; margin-top: 2*$itemspacing; }
+
+/* ======================
+    Resume Styles
+   ====================== */
+
+// background information
+
+#profile-img {
+    text-align: center;
+    height: 120px;
+}
+#profile-img img {
+    position: relative;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    top: -100px;
+}
+// #background h3 {
+//     border-bottom: none;
+// }
+#contact, #social-networks{
+    margin-bottom: $itemspacing;
+}
+#contact span:not(:last-child):after {
+    margin: 0 7px 0 10px;
+    color: $primarytext;
+    font-weight: 700;
+    content: "\00B7";
+}
+
+// generic section styles
+
+.resume section { 
+    margin-top: $itemspacing;
+    margin-bottom: $itemspacing;
+}
+.resume section h3 {  
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $lightaccent;
+    font-variant: small-caps;
+}
+
+.resume-item {
+    margin-bottom: $itemspacing;;
+}
+.resume-item-title {
+    font-weight: 600;
+}
+// .resume-item-title:after { content: ', ' }
+// .resume-item-title.no-comma:after { content: '' }
+// .resume-item-type:after { content: ',' }
+.resume-item-dates { 
+    color: $greytext; 
+    font-size: 80%;
+}
+
+.badge-list {  
+    list-style: none;
+}
+.badge-list li {
+    float: left;
+    margin-right: 7px;
+}
