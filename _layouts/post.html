@@ -1,30 +1,113 @@
----
-layout: default
-selected: blog
----
 
-<div class="header-half-spacer">
-    <div class="container">
-        <h2>{{ page.title }}</h2>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        {{ site.title }}
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
+</head>
+
+<body>
+
+    <header>
+        <div id="navbar" class="navbar shadow-sm fixed-top">
+            <div class="container d-flex justify-content-between">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <strong>{{ site.title }}</strong>
+                </a>
+
+                <nav class="my-2 my-md-0 mr-md-3">
+                    <a class="p-2" href="{{ '/' | relative_url }}">Home</a>
+                    <a class="p-2 selected" href="{{ '/blog/' | relative_url }}">Blog</a>
+                    <a class="p-2" href="{{ '/resume/' | relative_url }}">Resume</a>
+                    <a class="p-2" href="{{ '/samples/' | relative_url }}">Samples</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-half-spacer">
+        <div class="container">
+            <h2>{{ page.title }}</h2>
+        </div>
     </div>
-</div>
+    
+    <div class="container">
+        <div class="post-meta">{{ page.date | date: "%b %-d, %Y" }}</div>
+    
+        {{ content }}
+    
+        <div class="post-tags"><strong>Tags: </strong> {% for cat in page.categories %}{{cat}} {% endfor %}</div>
+    </div>
+    
+    <div class="container page-navigation horizontal-spaced-list">
+        {% if page.previous.url %}
+        <a class="prev" href="{{ page.previous.url | relative_url }}">&laquo; {{page.previous.title}}</a>
+        {% endif %}
+    
+        <a href="{{ '/' | relative_url }}">Home</a>
+    
+        {% if page.next.url %}
+        <a class="next" href="{{ page.next.url | relative_url }}">{{page.next.title}} &raquo;</a>
+        {% endif %}
+    </div>
 
-<div class="container">
-    <div class="post-meta">{{ page.date | date: "%b %-d, %Y" }}</div>
+    <footer>
+        <div class="container">
+            <div class="footer-social">
+                {% for social in site.social %}
+                    <a href="{{ social.url }}">
+                        <i class="fab fa-2x fa-{{ social.type | downcase }}"></i>
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="footer-owner horizontal-spaced-list">
+                <span>{{ site.owner }}</span>
+                <span>&#169; 2020</span>
+                <span>{{ site.url }}</span>
+                <span>subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></span>
+            </div>
+        </div>
+    </footer>
 
-    {{ content }}
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+        integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
+        crossorigin="anonymous"></script>
+    <script src="{{ '/assets/js/site.js' | relative_url }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            function checkScroll(){
+                var startY = $('.navbar').height() * 2; //The point where the navbar changes in px
 
-    <div class="post-tags"><strong>Tags: </strong> {% for cat in page.categories %}{{cat}} {% endfor %}</div>
-</div>
+                if($(window).scrollTop() > startY) {
+                    $('.navbar').addClass("opaque shadow-sm");
+                }
+                else {
+                    $('.navbar').removeClass("opaque shadow-sm");
+                }
+            }
 
-<div class="container page-navigation horizontal-spaced-list">
-    {% if page.previous.url %}
-    <a class="prev" href="{{ page.previous.url | relative_url }}">&laquo; {{page.previous.title}}</a>
-    {% endif %}
+            if($('.navbar').length > 0){
+                $(window).on("scroll load resize", function(){
+                    checkScroll();
+                });
+            }
+        });
+    </script>
 
-    <a href="{{ '/' | relative_url }}">Home</a>
-
-    {% if page.next.url %}
-    <a class="next" href="{{ page.next.url | relative_url }}">{{page.next.title}} &raquo;</a>
-    {% endif %}
-</div>
+</body>
+</html>

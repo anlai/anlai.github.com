@@ -6,8 +6,8 @@ layout: default
 	<div class="container">
 		{{ site.description }}
 		<div class="btns">
-			<a href="{{ site_url + '/blog/' }}" class="btn btn-secondary">Blog</a>
-			<a href="{{ site_url + '/resume/' }}" class="btn btn-secondary">Resume</a>
+			<a href="{{ '/blog/' | relative_url }}" class="btn btn-secondary">Blog</a>
+			<a href="{{ '/resume/' | relative_url }}" class="btn btn-secondary">Resume</a>
 			<a href="{{ '/samples/' | relative_url }}" class="btn btn-secondary">Samples</a>
 		</div>
 	</div>
