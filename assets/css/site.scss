@@ -40,6 +40,9 @@ h3 { color: $secondarytext; }
     content: ", ";
 }
 
+.top-space { margin-top: $itemspacing; }
+.bottom-spacer { margin-bottom: $itemspacing; }
+
 /* ======================
     Header Site Styles
    ====================== */
@@ -103,7 +106,6 @@ footer .footer-social, footer .footer-owner {
    ====================== */
 .header-spacer.home { height: 100vh; }
 .header-spacer.home .container { top: 30vh; }
-.header-spacer.home .container .btns { margin-top: $itemspacing; }
 
 /* ======================
     Blog Styles
@@ -141,9 +143,6 @@ ul.pager li {display: inline;border: 1px solid black; padding: 10px; margin: 5px
     width: 200px;
     top: -100px;
 }
-// #background h3 {
-//     border-bottom: none;
-// }
 #contact, #social-networks{
     margin-bottom: $itemspacing;
 }
@@ -173,9 +172,6 @@ ul.pager li {display: inline;border: 1px solid black; padding: 10px; margin: 5px
 .resume-item-title {
     font-weight: 600;
 }
-// .resume-item-title:after { content: ', ' }
-// .resume-item-title.no-comma:after { content: '' }
-// .resume-item-type:after { content: ',' }
 .resume-item-dates { 
     color: $greytext; 
     font-size: 80%;

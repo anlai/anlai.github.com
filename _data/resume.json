@@ -2,7 +2,6 @@
     "basics": {
         "name": "Alan Lai",
         "label": "Software Engineer",
-        "email": "alan.lai@outlook.com",
         "website": "alanlai.me",
         "summary": "ABOUT ME",
         "location": {
@@ -31,11 +30,11 @@
             "website": "https://chevron.com",
             "startDate": "2019-01-01",
             "endDate": "",
-            "summary": "Product Owner for various Azure public cloud services within Chevron IT, Public Cloud Program.  Lead teams to deliver critical automation and practices for Chevron public cloud services and worked to enable and accelerate the adoption of Microsoft Azure across the Chevron enterprise.",
+            "summary": "Product Owner for various Azure public cloud services within Chevron IT, Public Cloud Program.  Led teams to deliver critical automation and practices for Chevron public cloud services and worked to enable and accelerate the adoption of Microsoft Azure across the Chevron enterprise.",
             "highlights": [
-                "Lead the team responsible for enterprise DevOps pipeline (and related tools Azure DevOps, Jenkins, SonarQube), Microsoft Azure PaaS Services, and enterprise supported code packages (NuGet, NPM, etc.).",
-                "Lead the team to develop self-service automations, to enable adoption of Microsoft Azure public cloud services.  Team developed self-service portals in Service Now platform.",
-                "Lead developer on enterprise wide automation orchestration middleware (Node.js, NPM, Angular, Azure Cosmos DB).  Facilitated application to cloud inventory, provisioning automation, cloud infrastructure information store.  Used as the system to facilitate enterprise developed automated processes.",
+                "Led the team responsible for enterprise DevOps pipeline (and related tools Azure DevOps, Jenkins, SonarQube), Microsoft Azure PaaS Services, and enterprise supported code packages (NuGet, NPM, etc.).",
+                "Led the team to develop self-service automations, to enable adoption of Microsoft Azure public cloud services.  Team developed self-service portals in Service Now platform.",
+                "Led developer on enterprise wide automation orchestration middleware (Node.js, NPM, Angular, Azure Cosmos DB).  Facilitated application to cloud inventory, provisioning automation, cloud infrastructure information store.  Used as the system to facilitate enterprise developed automated processes.",
                 "Developed several tools to focus on customer experience, enterprise documentation site (Node.js) and enterprise services status site with automated communications (.NET Core).  Enabling customers to be more aware of how to take advantage of services and be aware of any issues within the ecosystem."
             ]
         },
@@ -60,7 +59,7 @@
             "endDate": "2017-01-01",
             "summary": "Technical lead for .NET based applications within Chevron Global Downstream, Manufacturing Global Applications group.  Oversaw the development and support of .NET applications used by the downstream manufacturing refinery locations worldwide.",
             "highlights": [
-                "Lead the development of a global IT inventory and compliance application for manufacturing operations.  Worked with stakeholders, developers, and end users throughout SDLC to design, develop, and test the application.  Application supports various IT inventory items and simplified the process for keeping infrastructure compliant with all relevant audit requirements.",
+                "Led the development of a global IT inventory and compliance application for manufacturing operations.  Worked with stakeholders, developers, and end users throughout SDLC to design, develop, and test the application.  Application supports various IT inventory items and simplified the process for keeping infrastructure compliant with all relevant audit requirements.",
                 "Developed NuGet packages for common design and functionality for corporate standards around branding standards and company directory.  Promoted the usage of the packages within the Downstream IT Operations group.",
                 "Worked with corporate IT groups to research and develop patterns and practices around Cloud application hosting.  Developed NuGet packages in support of cloud patterns and security."
             ]
@@ -118,34 +117,30 @@
     }],
     "skills": [
         {
-            "name": "Backend Developer",
+            "name": "Developer",
             "level": "expert",
-            "keywords": [".NET Core", ".NET Framework", "NuGet", "WebForms", "VB", "MS SQL", "Entity Framework", "Dapper ORM", "Express", "NPM", "Docker"],
+            "keywords": ["C#", "JavaScript", "TypeScript", "T-SQL", ".NET Core", ".NET Framework","HTML", "CSS", "Angular", "jQuery", ".NET MVC", ".NET Razor", "NuGet", "WebForms", "MS SQL", "Entity Framework", "Dapper ORM", "Express", "NPM", "Docker"],
             "skill": [
+                { "name": "C#", "level": "expert" },
+                { "name": "JavaScript", "level": "proficient" },
+                { "name": "TypeScript", "level": "proficient" },
+                { "name": "T-SQL", "level": "expert" },
                 { "name": ".NET Core", "level": "proficient" },
                 { "name": ".NET Framework", "level": "expert" },
-                { "name": "MS SQL", "level": "expert" },
-                { "name": "Entity Framework", "level": "proficient" },
-                { "name": "Dapper ORM", "level": "proficient" },
-                { "name": "NuGet", "level": "proficient" },
-                { "name": "WebForms", "level": "proficient" },
-                { "name": "VB", "level": "proficient" },
-                { "name": "Express", "level": "proficient" },
-                { "name": "NPM", "level": "proficient" },
-                { "name": "Docker", "level": "beginner" }
-            ]
-        },
-        {
-            "name": "Web Developer",
-            "level": "proficient",
-            "keywords": ["HTML", "CSS", "Angular", "jQuery", ".NET MVC", ".NET Razor"],
-            "skill": [
                 { "name": "HTML", "level": "proficient" },
                 { "name": "CSS", "level": "proficient" },
                 { "name": "Angular", "level": "proficient" },
                 { "name": "jQuery", "level": "expert" },
                 { "name": ".NET MVC", "level": "expert" },
-                { "name": ".NET Razor", "level": "expert" }
+                { "name": ".NET Razor", "level": "expert" },
+                { "name": "MS SQL", "level": "expert" },
+                { "name": "Entity Framework", "level": "proficient" },
+                { "name": "Dapper ORM", "level": "proficient" },
+                { "name": "NuGet", "level": "proficient" },
+                { "name": "WebForms", "level": "proficient" },
+                { "name": "Express", "level": "proficient" },
+                { "name": "NPM", "level": "proficient" },
+                { "name": "Docker", "level": "beginner" }
             ]
         },
         {
@@ -156,7 +151,6 @@
                 { "name": "Azure", "level": "expert" },
                 { "name": "Azure App Service", "level": "expert" },
                 { "name": "Azure Functions", "level": "expert" },
-                { "name": "Azure Traffic Manager", "level": "proficient" },
                 { "name": "Azure Cosmos DB", "level": "proficient" },
                 { "name": "Azure Table Storage", "level": "proficient" },
                 { "name": "Azure Storage", "level": "expert" },
@@ -168,44 +162,26 @@
         {
             "name": "Development Tools",
             "level": "expert",
-            "keywords": ["Visual Studio", "Visual Studio Code", "Git", "Github", "Git-Flow", "SonarQube", "Micro Focus Fortify", "Swagger", "Open API", "Grunt", "MS SQL", "Mongo DB"],
+            "keywords": ["Visual Studio", "Visual Studio Code", "Git", "Github", "Git-Flow","Azure DevOps", "Azure DevOps Pipelines", "Ansible", "Jenkins", "Powershell", "Bash", "SonarQube", "Micro Focus Fortify", "Swagger", "Open API", "Grunt", "MS SQL", "Mongo DB"],
             "skill": [
                 { "name": "Visual Studio", "level": "expert" },
                 { "name": "Visual Studio Code", "level": "expert" },
                 { "name": "Git", "level": "expert" },
                 { "name": "Github", "level": "proficient" },
                 { "name": "Git-Flow", "level": "expert" },
+                { "name": "Azure DevOps", "level": "expert" },
+                { "name": "Azure DevOps Pipelines", "level": "proficient" },
+                { "name": "Ansible", "level": "proficient" },
+                { "name": "Jenkins", "level": "proficient" },
+                { "name": "Powershell", "level": "proficient" },
+                { "name": "Bash", "level": "proficient" },         
                 { "name": "SonarQube", "level": "proficient" },
                 { "name": "Micro Focus Fortify", "level": "proficient" },
                 { "name": "Swagger", "level": "proficient" },
                 { "name": "Open API", "level": "proficient" },
                 { "name": "Grunt", "level": "proficient" },
                 { "name": "MS SQL", "level": "proficient" },
-                { "name": "Mongo DB", "level": "proficient" } 
-            ]
-        },
-        {
-            "name": "DevOps Tools",
-            "level": "proficient",
-            "keywords": ["Azure DevOps", "Azure DevOps Pipelines", "Ansible", "Jenkins", "Powershell", "Bash"],
-            "skill": [
-                { "name": "Azure DevOps", "level": "proficient" },
-                { "name": "Azure DevOps Pipelines", "level": "proficient" },
-                { "name": "Ansible", "level": "proficient" },
-                { "name": "Jenkins", "level": "proficient" },
-                { "name": "Powershell", "level": "proficient" },
-                { "name": "Bash", "level": "proficient" }                
-            ]
-        },
-        {
-            "name": "Languages",
-            "level": "proficient",
-            "keywords": ["C#", "JavaScript", "TypeScript", "T-SQL"],
-            "skill": [
-                { "name": "C#", "level": "expert" },
-                { "name": "JavaScript", "level": "proficient" },
-                { "name": "TypeScript", "level": "proficient" },
-                { "name": "T-SQL", "level": "proficient" }
+                { "name": "Mongo DB", "level": "proficient" }
             ]
         },
         {

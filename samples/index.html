@@ -9,13 +9,13 @@ selected: samples
     </div>
 </div>
 
-<div class="container">
+<div id="project-list">
 
     {% for project in site.data.samples %}
-
-        <h3>{{ project.name }}</h3>
-        <p>{{ project.description }}</p>
-
+        <div class="container post">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+        </div>
     {% endfor %}
 
 </div>
