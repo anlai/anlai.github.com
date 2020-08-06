@@ -127,6 +127,21 @@ ul.pager li {display: inline;border: 1px solid black; padding: 10px; margin: 5px
 .page-navigation { text-align: center; margin-top: 2*$itemspacing; }
 
 /* ======================
+    Project Styles
+   ====================== */
+
+.container.project { 
+    margin-bottom: $itemspacing; 
+    padding-bottom: $itemspacing; 
+}
+.container.project:first-child { margin-top: $itemspacing; }
+.container.post:not(:last-child) { border-bottom: 1px soli $lightaccent; }
+.project-meta { color: $lightprimarytext; margin-bottom: $itemspacing; }
+.project-meta:before { content: 'Keywords: ' }
+
+.project-content { margin-top: $itemspacing; margin-bottom: $itemspacing; }
+
+/* ======================
     Resume Styles
    ====================== */
 

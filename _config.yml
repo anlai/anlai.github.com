@@ -33,3 +33,14 @@ pagination:
   limit: 0
   sort_field: 'date'
   sort_reverse: true
+
+collections:
+  projects:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"

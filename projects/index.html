@@ -1,0 +1,22 @@
+---
+layout: default
+selected: projects
+---
+
+<div class="header-half-spacer">
+    <div class="container">
+        <h2>Projects</h2>
+    </div>
+</div>
+
+<div id="project-list">
+
+    {% for project in site.projects %}
+        <div class="container project">
+            <h3><a href="{{ project.url }}">{{ project.title }}</a></h3>
+            <p>{{ project.description }}</p>
+            <span class="project-meta">{{ project.keywords }}</span>
+        </div>
+    {% endfor %}
+
+</div>

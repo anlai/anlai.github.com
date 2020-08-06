@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+<div class="header-half-spacer">
+    <div class="container">
+        <h2>{{ page.title }}</h2>
+    </div>
+</div>
+
+{% if page.github_url %}
+    <div class="container project-content">
+        See it on GitHub: <a href="{{ page.github_url }}">{{ page.github_url }}</a>
+    </div>
+{% endif %}
+
+<div class="container project-content">
+    {{ content }}
+</div>
