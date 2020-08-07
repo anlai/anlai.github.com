@@ -1,0 +1,15 @@
+
+{% assign defaultnav = site.data.defaultnav %}
+
+<nav class="my-2 my-md-0 mr-md-3">
+    {% if include.navigation %}
+        {% for nav in include.navigation %}
+        <a class="p-2 {% if nav.selected %}selected{% endif %}" href="{{ nav.url | relative_url }}">{{ nav.name }}</a>                  
+        {% endfor %}
+    {% else %}
+        {% for nav in defaultnav %}
+        {% assign tmp = (include.selected | strip) %}
+        <a class="p-2 {% if tmp == nav.name %}selected{% endif %}" href="{{ nav.url | relative_url }}">{{ nav.name }}</a>                  
+        {% endfor %}
+    {% endif %}
+</nav>

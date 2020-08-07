@@ -25,12 +25,8 @@
                     <strong>{{ site.title }}</strong>
                 </a>
 
-                <nav class="my-2 my-md-0 mr-md-3">
-                    <a class="p-2" href="{{ '/' | relative_url }}">Home</a>
-                    <a class="p-2 {% if page.selected == 'blog' %}selected{% endif %}" href="{{ '/blog/' | relative_url }}">Blog</a>
-                    <a class="p-2 {% if page.selected == 'resume' %}selected{% endif %}" href="{{ '/resume/' | relative_url }}">Resume</a>
-                    <a class="p-2 {% if page.selected == 'projects' %}selected{% endif %}" href="{{ '/projects/' | relative_url }}">Projects</a>
-                </nav>
+                {% include navigation.html navigation = page.navigation selected = page.selected %}
+               
             </div>
         </div>
     </header>

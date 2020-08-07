@@ -41,6 +41,13 @@ collections:
 defaults:
   - scope:
       path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      selected: "Blog"
+  - scope:
+      path: ""
       type: "projects"
     values:
       layout: "project"
+      selected: "Projects"

@@ -42,6 +42,8 @@ h3 { color: $secondarytext; }
 
 .top-space { margin-top: $itemspacing; }
 .bottom-spacer { margin-bottom: $itemspacing; }
+.spacer { height: $itemspacing; }
+.spacer2x { height: 2*$itemspacing; }
 
 /* ======================
     Header Site Styles
@@ -62,6 +64,10 @@ h3 { color: $secondarytext; }
     font-size: 1.5em;
     color: $white;
     position: relative;
+}
+.header-button {
+    position: relative;
+    top: 5px;
 }
 
 /* navbar style when at the top of the page */
