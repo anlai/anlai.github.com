@@ -69,6 +69,9 @@ h3 { color: $secondarytext; }
     position: relative;
     top: 5px;
 }
+.page-meta { font-size: medium; }
+.page-meta-left { text-align: left; color: $white !important; }
+.page-meta-right { text-align: right; color: $white !important; }
 
 /* navbar style when at the top of the page */
 .navbar {
@@ -117,14 +120,17 @@ footer .footer-social, footer .footer-owner {
     Blog Styles
    ====================== */
 
+.item-meta { color: $lightprimarytext; margin-bottom: $itemspacing; }
+
 .container.post {
     margin-bottom: $itemspacing;
     padding-bottom: $itemspacing;
 }
 .container.post:first-child { margin-top: $itemspacing; }
 .container.post:not(:last-child) { border-bottom: 1px solid $lightaccent; }
-.post-meta { color: $lightprimarytext; margin-bottom: $itemspacing; }
-.post-meta:before { content: 'Posted on: ' }
+.post-meta:before { content: 'Posted on: '; font-weight: bold; }
+.post-tags:before { content: 'Tags: '; font-weight: bold; }
+
 .post-tags { margin-top: $itemspacing; }
 
 ul.pager { text-align: center; list-style: none; }
@@ -142,8 +148,7 @@ ul.pager li {display: inline;border: 1px solid black; padding: 10px; margin: 5px
 }
 .container.project:first-child { margin-top: $itemspacing; }
 .container.post:not(:last-child) { border-bottom: 1px soli $lightaccent; }
-.project-meta { color: $lightprimarytext; margin-bottom: $itemspacing; }
-.project-meta:before { content: 'Keywords: ' }
+.project-meta:before { content: 'Keywords: '; font-weight: bold; }
 
 .project-content { margin-top: $itemspacing; margin-bottom: $itemspacing; }
 

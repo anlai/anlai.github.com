@@ -14,15 +14,17 @@ pagination:
     </div>
 </div>
 
+<div class="spacer"></div>
+
 <section id="blog-posts">
 	{% for post in paginator.posts %}
 	<article class="container post">
 		<h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
-		<span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+		<span class="item-meta post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
 		{{ post.excerpt }}
 
-		<div class="post-tags"><strong>Tags: </strong> {% for cat in post.categories %}{{cat}} {% endfor %}</div>
+		<div class="item-meta post-tags">{% for cat in post.categories %}{{cat}} {% endfor %}</div>
 	</article>
 	{% endfor %}
 </section>
