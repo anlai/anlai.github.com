@@ -45,6 +45,8 @@ h3 { color: $secondarytext; }
 .spacer { height: $itemspacing; }
 .spacer2x { height: 2*$itemspacing; }
 
+pre { padding: $itemspacing; background-color: #efefef; }
+
 /* ======================
     Header Site Styles
    ====================== */
@@ -130,6 +132,7 @@ footer .footer-social, footer .footer-owner {
 .container.post:not(:last-child) { border-bottom: 1px solid $lightaccent; }
 .post-meta:before { content: 'Posted on: '; font-weight: bold; }
 .post-tags:before { content: 'Tags: '; font-weight: bold; }
+.post-content img { max-width: 80%; }
 
 .post-tags { margin-top: $itemspacing; }
 

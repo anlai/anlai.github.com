@@ -49,7 +49,8 @@ Assumptions are that the Resource Group you'll use is called "Grafana", but you 
     - **Name**: Grafana
     - **Operating System**: Linux
     - **Region**: West US (or wherever is closer to you)
-    - **SKU and size**: Basic B1 (this is the cheapest if you want custom DNS)
+    - **SKU and size**: Basic B1 (this is the cheapest if you want custom DNS)<br/>
+![Create ASP Form]({{ '/assets/images/posts/2020/09/grafana-influxdb-appservicelinux/create-asp.png' | relative_url }})
 
 1. Click Review & Create
 1. Create the Resource
@@ -64,11 +65,14 @@ Assumptions are that the Resource Group you'll use is called "Grafana", but you 
     - **Performance**: Standard
     - **Account kind**: Storage V2
     - **Replication**: Locally Redundant storage (LRS) (whatever you want)
-    - **Blob access tier**: Hot
+    - **Blob access tier**: Hot<br/>
+![Create Storage Account Form]({{ '/assets/images/posts/2020/09/grafana-influxdb-appservicelinux/create-storage.png' | relative_url }})
+
 1. Click Review & Create
 1. Create the Resource
 1. Once created, go to the resource and open Data Explorer blade
 1. Right click on "File Shares" and create 2 named grafana and influxdb
+![Create Storage File Shares Form]({{ '/assets/images/posts/2020/09/grafana-influxdb-appservicelinux/create-fileshares.png' | relative_url }})
 
 ### App Service (InfluxDB)
 
@@ -79,13 +83,17 @@ Assumptions are that the Resource Group you'll use is called "Grafana", but you 
     - **Publish**: Docker
     - **Operating System**: Linux
     - **Region**: Select the same as App Service Plan
-    - **Linux Plan**: Select the App Service Plan created above
+    - **Linux Plan**: Select the App Service Plan created above<br/>
+![Create App Service Influxdb Form]({{ '/assets/images/posts/2020/09/grafana-influxdb-appservicelinux/create-influxdb-app.png' | relative_url }})
+
 1. Click "Next: Docker"
 1. On the Docker section use the following settings:
     - **Options**: Single Container
     - **Image Source**: Docker Hub
     - **AccessType**: Public
-    - **Image and Tag**: influxdb (you can also do influxdb:latest or any other version)
+    - **Image and Tag**: influxdb (you can also do influxdb:latest or any other version)<br/>
+![Create App Service Influxdb Docker Form]({{ '/assets/images/posts/2020/09/grafana-influxdb-appservicelinux/create-influxdb-app-docker.png' | relative_url }})
+
 1. Click Review & Create
 1. Create the Resource
 1. Once created, you can check to make sure the App Service loads up with the container.  Open up a browser and navigate to https://{app name}.azurewebsites.net/health.
