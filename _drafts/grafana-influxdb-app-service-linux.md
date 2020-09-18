@@ -146,6 +146,8 @@ Assumptions are that the Resource Group you'll use is called "Grafana", but you 
     - **Image and Tag**: grafana/grafana
 1. Click Review & Create
 1. Create the Resource
+1. Go to the SSL/TLS blade
+    1. Set **HTTPS Only** to On
 
 Grafana should be up and running in default mode, make sure to login and configure security.
 
@@ -205,3 +207,7 @@ az webapp start -g $rgname -n $influxdbAppname
 # create app service (grafana)
 az webapp create -g $rgname -p $aspname -n $grafanaAppname -i grafana/grafana
 ```
+
+## Connect The Two
+
+At this point the two are setup, you can start push time series data into the InfluxDB database using the username and password.  Setting up a data source is also pretty trivial (just use https and port 443 for everything, not the defaults!).
