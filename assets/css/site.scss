@@ -118,6 +118,9 @@ footer .footer-social, footer .footer-owner {
 .header-spacer.home { height: 100vh; }
 .header-spacer.home .container { top: 30vh; }
 
+.header-spacer.home .container .social { margin-top: 2*$itemspacing; }
+.header-spacer.home .container .social a { color: #ffffff; }
+
 /* ======================
     Blog Styles
    ====================== */

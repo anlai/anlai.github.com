@@ -5,10 +5,19 @@ hideFooter: true
 
 <div class="header-spacer home">
 	<div class="container">
+
 		{{ site.description }}
 		<div class="btns top-space">
 			<a href="{{ '/blog/' | relative_url }}" class="btn btn-secondary">Blog</a>
 			<a href="{{ '/projects/' | relative_url }}" class="btn btn-secondary">Projects</a>
+		</div>
+
+		<div class="social">
+			{% for social in site.social %}
+				<a href="{{ social.url }}">
+					<i class="fab fa-2x fa-{{ social.type | downcase }}"></i>
+				</a>
+			{% endfor %}
 		</div>
 	</div>
 </div>

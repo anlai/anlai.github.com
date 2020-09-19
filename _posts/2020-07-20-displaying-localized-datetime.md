@@ -27,3 +27,22 @@ What this really doesn't solve for is if you have an application where the audie
 I don't know that I've seen a lot of suggestions to tackle this problem on the client side.  Maybe it's a lack of imagination on my part on what could go wrong?
 
 The solution I've come up with is pretty simple.  You do zero server side processing (makes even more sense when you are doing an API) everything leaving the server stays in UTC.  Now all you need to do is drop the datetime value in ISO 8601 format for UTC and have the browser do the conversion to the clients timezone.
+
+This is a properly formatted UTC string that the script expects.
+<span>2020-09-19T05:12:32Z</span>
+
+This value is converted using the script below.  It should show the above datetime and localized for your specific timezone.
+<span class="localize-datetime">2020-09-19T05:12:32Z</span>
+
+Taking C# Razor as an example, you would just output a datetime like this (assuming a variable called startDate):
+
+```razor
+<div class="localize-datetime">
+@startDate.ToString("o");
+</div>
+```
+
+Then the script below will execute on page load and convert all the objects with the class "localize-datetime".
+
+<script src="https://gist.github.com/anlai/3fd9ce1bfcb7919522508cf846eec782.js"></script>
+<script type="text/javascript" src="https://gitcdn.link/repo/anlai/3fd9ce1bfcb7919522508cf846eec782/raw/e6df0e369c4bb17f3908ee01025296c8ff997cf5/localize-datetime.js"></script>
