@@ -148,6 +148,9 @@ Assumptions are that the Resource Group you'll use is called "Grafana", but you 
 1. Create the Resource
 1. Go to the SSL/TLS blade
     1. Set **HTTPS Only** to On
+1. Under General Settings, set the following values:
+    - **Always on**: yes
+
 
 Grafana should be up and running in default mode, make sure to login and configure security.
 
@@ -184,7 +187,8 @@ az storage share create --account-name $storagename --name $grafanaFileshare
 az webapp create -g $rgname -p $aspname -n $influxdbAppname -i influxdb
 az webapp stop -g $rgname -n $influxdbAppname
 az webapp config set -g $rgname -n $influxdbAppname --always-on true
-az webapp config appsettings set -g $rgname -n $influxdbAppname --settings INFLUXDB_ADMIN_USER=admin \
+az webapp config appsettings set -g $rgname -n $influxdbAppname --settings \
+    INFLUXDB_ADMIN_USER=admin \
     INFLUXDB_ADMIN_PASSWORD={strong password} \
     INFLUXDB_DB=firstdb \
     INFLUXDB_USER=firstuser \
@@ -206,6 +210,54 @@ az webapp start -g $rgname -n $influxdbAppname
 
 # create app service (grafana)
 az webapp create -g $rgname -p $aspname -n $grafanaAppname -i grafana/grafana
+```
+
+## Grafana Startup Fix
+
+Regardless of which way you setup Grafana, the instruction above work but aren't persistent.  Your dashbaords and settings can be wiped at anytime.  We want to move the Grafana storage to persistent storage like we did for InfluxDb, but there is just a small problem.  It fails to startup when moved to persistent storage, there is a Github issue around it and a workaround!  [Github Error on Azure Container Instances: Migration failed err: database is locked #20549](https://github.com/grafana/grafana/issues/20549#issuecomment-584857241)
+
+Assumption is you already created the grafana file share in your Azure Storage Account.
+
+1. Stop the Grafana App Service
+1. Generate a Grafana.db file locally using sqllite (requires Chocolatey) with journal mode wal
+```powershell
+choco install sqlite3
+sqlite3 grafana.db 'pragma journal_mode=wal;'
+```
+1. Upload the grafana.db file to your storage account, grafana file share root
+1. Map the fileshare to your App Service (see steps below)
+1. Startup the App Service
+
+### Manual
+
+Add an Application Setting
+
+**GF_DATABASE_URL**: "sqlite3:///var/lib/grafana/grafana.db?cache=private&mode=rwc&_journal_mode=WAL"
+
+Under Path Mappings, add a storage account mount with these settings:
+
+- **Name**: Data
+- **Configuration Options**: Basic
+- **Storage Accounts**: Select the one created earlier
+- **Storage Type**: Azure Files
+- **Storage Container**: grafana (container created earlier)
+- **Mount Path**: /var/lib/grafana
+
+### Powershell
+
+```powershell
+$grafanaFileshare = grafana
+$grafanaAppname = grafana-sample
+$rgname = Grafana
+$storagename = grafanadata
+$connstring = "sqlite3:///var/lib/grafana/grafana.db?cache=private&mode=rwc&_journal_mode=WAL"
+
+az webapp config appsettings set -g $rgname -n $grafanaAppname --settings GF_DATABASE_URL=$connstring
+az webapp config storage-account add -g $rgname -n $grafanaAppname --custom-id data \
+    --storage-type AzureFiles \
+    --account-name $storagename \
+    --share-name $grafanaFileshare \
+    --mount-path /var/lib/grafana
 ```
 
 ## Connect The Two
