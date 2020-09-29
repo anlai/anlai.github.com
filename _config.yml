@@ -47,3 +47,4 @@ defaults:
     values:
       layout: "project"
       selected: "Projects"
+theme: jekyll-theme-cayman
