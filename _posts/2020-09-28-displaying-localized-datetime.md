@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Displaying Localized Date Time Values"
-date: 2020-07-20
+date: 2020-09-28
 categories: javascript html
 ---
 
