@@ -10,13 +10,3 @@ selected: Blog
         <h2>My Blog</h2>
     </div>
 </div>
-
-<div class="spacer"></div>
-
-<section id="blog-posts">
-	{% for post in site.posts %}
-	<article class="container post">
-		<h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
-	</article>
-	{% endfor %}
-</section>
