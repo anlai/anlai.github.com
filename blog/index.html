@@ -4,8 +4,8 @@
 
 layout: default
 selected: Blog
-pagination:
-  enabled: true
+<!-- pagination:
+  enabled: true -->
 ---
 
 <div class="header-half-spacer">
@@ -17,7 +17,7 @@ pagination:
 <div class="spacer"></div>
 
 <section id="blog-posts">
-	{% for post in paginator.posts %}
+	{% for post in site.posts %}
 	<article class="container post">
 		<h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
 		<span class="item-meta post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
@@ -32,7 +32,7 @@ pagination:
 <!-- 
     Showing buttons to move to the next and to the previous list of posts (pager buttons).
   -->
-{% if paginator.total_pages > 1 %}
+<!-- {% if paginator.total_pages > 1 %}
 <ul class="pager">
 	{% if paginator.previous_page %}
 	<li class="previous">
@@ -45,4 +45,4 @@ pagination:
 	</li>
 	{% endif %}
 </ul>
-{% endif %}
+{% endif %} -->
