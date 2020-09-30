@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Grafana and InfluxDB on Azure App Service Linux Containers
-date: 2020-09-15
+date: 2020-09-30
 categories: azure app-service app-service-linux grafana influxdb docker
 ---
 
@@ -35,13 +35,11 @@ The gist of the App Serivce setup will be to create the services using the docke
 
 What I won't cover as part of this guide is setting up custom domains and TLS certificates as I think there is probably enough information around the internet.  However we will turn on HTTPS only so all connections will be encrypted.  App Service will automatically provide SSL termination for your Docker container and note the standard ports for InfluxDB and Grafana will just be 443.
 
-## Manual Setup (using Azure Portal UI)
-
-For the followint steps you'll be using the [Azure Portal](https://portal.azure.com).
+For the following steps you'll be using the [Azure Portal](https://portal.azure.com).
 
 Assumptions are that the Resource Group you'll use is called "Grafana", but you can easily call it whatever you want.
 
-### App Service Plan
+## App Service Plan
 
 1. Create an App Service Plan
 1. Use the following settings:
@@ -55,7 +53,7 @@ Assumptions are that the Resource Group you'll use is called "Grafana", but you 
 1. Click Review & Create
 1. Create the Resource
 
-### Storage Account
+## Storage Account
 
 1. Create a Storage Account
 1. Use the following settings:
@@ -74,7 +72,7 @@ Assumptions are that the Resource Group you'll use is called "Grafana", but you 
 1. Right click on "File Shares" and create 2 named grafana and influxdb
 ![Create Storage File Shares Form]({{ '/assets/images/posts/2020/09/grafana-influxdb-appservicelinux/create-fileshares.png' | relative_url }})
 
-### App Service (InfluxDB)
+## App Service (InfluxDB)
 
 1. Create App Service
 1. Use the following settings:
@@ -128,7 +126,7 @@ Assumptions are that the Resource Group you'll use is called "Grafana", but you 
     - INFLUXDB_USER_PASSWORD
 1. Start the App Service
 
-### App Service (Grafana)
+## App Service (Grafana)
 
 1. Create App Service
 1. Use the following settings:
@@ -154,65 +152,7 @@ Assumptions are that the Resource Group you'll use is called "Grafana", but you 
 
 Grafana should be up and running in default mode, make sure to login and configure security.
 
-## Powershell Script Setup
-
-Here is the series of Powershell scripts to execute mostly the same configuration as above.  These commands require the usage of [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest)
-
-You can either do it from the cloud shell or locally (which requires the login steps).
-
-```azurepowershell
-$subscriptionId = {subscription id}
-$rgname = Grafana
-$aspname = Grafana
-$storagename = grafanadata
-$region = westus
-$influxdbFileshare = influxdb
-$influxdbAppname = influxdb-sample
-$grafanaFileshare = grafana
-$grafanaAppname = grafana-sample
-
-# login
-az login
-az account set --subscription $subscriptionId
-
-# create app service plan
-az appservice plan create -g $rgname -n $aspname --is-linux -l $region --sku B1
-
-# create storage account
-az storage account create -g $rgname -n $storagename -l $region --kind StorageV2 --sku Standard_LRS --access_tier Hot
-az storage share create --account-name $storagename --name $influxdbFileshare
-az storage share create --account-name $storagename --name $grafanaFileshare
-
-# create app service (influxdb)
-az webapp create -g $rgname -p $aspname -n $influxdbAppname -i influxdb
-az webapp stop -g $rgname -n $influxdbAppname
-az webapp config set -g $rgname -n $influxdbAppname --always-on true
-az webapp config appsettings set -g $rgname -n $influxdbAppname --settings \
-    INFLUXDB_ADMIN_USER=admin \
-    INFLUXDB_ADMIN_PASSWORD={strong password} \
-    INFLUXDB_DB=firstdb \
-    INFLUXDB_USER=firstuser \
-    INFLUXDB_USER_PASSWORD={strong password} \
-    INFLUXDB_HTTP_AUTH_ENABLED=true \
-az webapp config storage-account add -g $rgname -n $influxdbAppname --custom-id data \
-    --storage-type AzureFiles \
-    --account-name $storagename \
-    --share-name $influxdbFileshare \
-    --mount-path /var/lib/influxdb
-az webapp start -g $rgname -n $influxdbAppname
-az webapp stop -g $rgname -n $influxdbAppname
-az webapp config appsettings delete -g $rgname -n $influxdbAppname --setting-names INFLUXDB_ADMIN_USER \
-    INFLUXDB_ADMIN_PASSWORD \
-    INFLUXDB_DB \
-    INFLUXDB_USER \
-    INFLUXDB_USER_PASSWORD
-az webapp start -g $rgname -n $influxdbAppname
-
-# create app service (grafana)
-az webapp create -g $rgname -p $aspname -n $grafanaAppname -i grafana/grafana
-```
-
-## Grafana Startup Fix
+### Grafana Startup Fix
 
 Regardless of which way you setup Grafana, the instruction above work but aren't persistent.  Your dashbaords and settings can be wiped at anytime.  We want to move the Grafana storage to persistent storage like we did for InfluxDb, but there is just a small problem.  It fails to startup when moved to persistent storage, there is a Github issue around it and a workaround!  [Github Error on Azure Container Instances: Migration failed err: database is locked #20549](https://github.com/grafana/grafana/issues/20549#issuecomment-584857241)
 
@@ -228,7 +168,7 @@ sqlite3 grafana.db 'pragma journal_mode=wal;'
 1. Map the fileshare to your App Service (see steps below)
 1. Startup the App Service
 
-### Manual
+### Grafana Persistence
 
 Add an Application Setting
 
@@ -242,23 +182,6 @@ Under Path Mappings, add a storage account mount with these settings:
 - **Storage Type**: Azure Files
 - **Storage Container**: grafana (container created earlier)
 - **Mount Path**: /var/lib/grafana
-
-### Powershell
-
-```powershell
-$grafanaFileshare = grafana
-$grafanaAppname = grafana-sample
-$rgname = Grafana
-$storagename = grafanadata
-$connstring = "sqlite3:///var/lib/grafana/grafana.db?cache=private&mode=rwc&_journal_mode=WAL"
-
-az webapp config appsettings set -g $rgname -n $grafanaAppname --settings GF_DATABASE_URL=$connstring
-az webapp config storage-account add -g $rgname -n $grafanaAppname --custom-id data \
-    --storage-type AzureFiles \
-    --account-name $storagename \
-    --share-name $grafanaFileshare \
-    --mount-path /var/lib/grafana
-```
 
 ## Connect The Two
 
