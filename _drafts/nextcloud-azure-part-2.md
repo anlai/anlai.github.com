@@ -27,6 +27,8 @@ From what I understand the underlying architecture between the two is that they 
 
 ## Deployment
 
+### Deploying App Service
+
 Deployment is pretty straightforward you'll need to take this first docker compose file and store it somewhere locally (like on your desktop).
 
 *docker_compose.yml*
@@ -73,8 +75,13 @@ Once you have your information filled out execute the ps1 script.  Once it's don
 
 *\*Note that the App Service Plan is spun up as a P1V2, it can be scaled down once setup is complete with almost no drop in performance.  Setup just takes a bit longer*
 
-**Azure CLI References**
-- [Azure CLI - App Service Plan](https://docs.microsoft.com/en-us/cli/azure/appservice/plan?view=azure-cli-latest#az_appservice_plan_create)
-- [Azure CLI - App Service](https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest#az_webapp_create)
-- [Azure CLI - Custom Hostname](https://docs.microsoft.com/en-us/azure/app-service/scripts/cli-configure-custom-domain)
-- [Azure CLI - SSL Binding](https://docs.microsoft.com/en-us/cli/azure/webapp/config/ssl?view=azure-cli-latest#az_webapp_config_ssl_create)
+### Deploy Storage Account
+
+## Guide
+
+Parts:
+1. Introduction (this post)
+1. Azure App Service Linux Setup
+1. Azure Database for MariaDB Setup
+1. Nextcloud Setup
+1. Securing and Cleaning up the Nextcloud Install
