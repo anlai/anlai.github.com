@@ -52,14 +52,14 @@ pre { padding: $itemspacing; background-color: #efefef; }
    ====================== */
 
 .top-spacer { position: top; height: 80px; }
-.header-half-spacer { height: 150px; }
+.header-half-spacer { height: 200px; }
 .header-spacer { height: 300px; }
 .header-spacer, .header-half-spacer {  
     position: top;
     background: rgb(0,0,0);
     background: linear-gradient(172deg, rgba(0,0,0,1) 0%, $secondarytext 100%);
 }
-.header-half-spacer .container { top: 75px; }
+.header-half-spacer .container { top: 75px; height: 125px; }
 .header-spacer .container { top: 125px; }
 .header-spacer .container, .header-half-spacer .container {
     text-align: center;
@@ -71,7 +71,7 @@ pre { padding: $itemspacing; background-color: #efefef; }
     position: relative;
     top: 5px;
 }
-.page-meta { font-size: medium; }
+.page-meta { font-size: medium; display: initial; bottom: 0; }
 .page-meta-left { text-align: left; color: $white !important; }
 .page-meta-right { text-align: right; color: $white !important; }
 
