@@ -1,0 +1,47 @@
+{% assign months = "January,February,March,April,May,June,July,August,September,October,November,December" | split: "," %}
+
+<!-- calculate the the start date -->
+{% assign start = include.startDate | split: "-" %}
+{% assign startMonth = start[1] | minus: 1 %}
+
+<!-- display the start date-->
+{{ months[startMonth] }} {{start[0]}}
+
+{% if include.hasEnd != false %}
+
+    <!-- spacer between start and end -->
+    -
+
+    <!-- logic for if end date is provided -->
+    {% if w.endDate != "" %}
+
+        <!-- calculate the values for the date -->
+        {% assign end = include.endDate | split: "-" %}
+        {% assign endMonth = end[1] | minus: 1 %}
+
+        <!-- display the value -->
+        {{ months[endMonth] }} {{ end[0] }}
+
+        <!-- calculate duration to display -->
+        {% assign start = w.startDate | date: '%s' %}
+        {% assign end = w.endDate | date: '%s' %}
+        {% assign diffSeconds = end | minus: start %}
+        {% assign diffDays = diffSeconds | divided_by: 60 | divided_by: 60 | divided_by: 24 %}
+        {% assign diffYears = diffDays | divided_by: 365.0 | round: 1 %}
+
+        {% if include.showDuration %}
+            <!-- display the duration -->
+            <i class="far fa-clock"></i>
+            {{ diffYears }}
+            {% if diffYears > 1.0 %}
+                years
+            {% else %}
+                year
+            {% endif %}
+        {% endif %}
+    {% else %}
+
+        Present
+
+    {% endif %}
+{% endif %}

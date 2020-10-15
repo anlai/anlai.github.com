@@ -1,0 +1,44 @@
+---
+layout: default
+selected: Resume
+---
+
+Nothing to see here...
+
+{% comment %}
+
+{% assign resume = site.data.resume %}
+
+<div class="header-half-spacer"></div>
+
+<div class="resume container">
+    <section id="profile-img">
+        <img src="{{ '/assets/images/me.jpg' | relative_url }}" >
+    </section>
+
+    <div class="text-center">
+        {% include background.html basics = resume.basics %}
+    </div>
+{% assign work = resume.work | size %}
+{% if work != 0 %}
+    {% include workExperience.html work = resume.work %}
+{% endif %}
+
+{% assign skills = resume.skills | size %}
+{% if skills != 0 %}
+    {% include skills.html skills = resume.skills %}
+{% endif %}
+
+{% assign education = resume.education | size %}
+{% if education != 0 %}
+    {% include education.html education = resume.education %}
+{% endif %}
+
+{% assign pubExists = resume.publications | size %}
+{% if pubExists != 0 %}
+    {% include publications.html publications = resume.publications %}
+{% endif %}
+
+</div>
+
+{% endcomment %}

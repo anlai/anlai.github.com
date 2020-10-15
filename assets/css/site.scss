@@ -1,0 +1,218 @@
+---
+---
+
+$primarytext: black;
+$lightprimarytext: #777;
+$secondarytext: rgba(14,116,215,1);
+
+$lightaccent: #eee;
+
+$white: #fff;
+$greytext: #777;
+$itemspacing: 15px;
+
+/* ======================
+    Global Site Styles
+   ====================== */
+
+body {
+    background: $white;
+}
+a { color: $secondarytext; }
+a:hover { color: $lightprimarytext; text-decoration: none; }
+h3 { color: $secondarytext; }
+
+.container {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* horizontal lists divided by a dot */
+.horizontal-spaced-list a:not(:last-child):after, .horizontal-spaced-list span:not(:last-child):after {
+    margin-left: 5px;
+    margin-right: 5px;
+    content: "\00B7";
+}
+
+.horizontal-spaced-comma-list a:not(:last-child):after, .horizontal-spaced-comma-list span:not(:last-child):after {
+    // margin-right: 2px;
+    content: ", ";
+}
+
+.top-space { margin-top: $itemspacing; }
+.bottom-spacer { margin-bottom: $itemspacing; }
+.spacer { height: $itemspacing; }
+.spacer2x { height: 2*$itemspacing; }
+
+pre { padding: $itemspacing; background-color: #efefef; }
+
+/* ======================
+    Header Site Styles
+   ====================== */
+
+.top-spacer { position: top; height: 80px; }
+.header-half-spacer { height: 200px; }
+.header-spacer { height: 300px; }
+.header-spacer, .header-half-spacer {  
+    position: top;
+    background: rgb(0,0,0);
+    background: linear-gradient(172deg, rgba(0,0,0,1) 0%, $secondarytext 100%);
+}
+.header-half-spacer .container { top: 75px; height: 125px; }
+.header-spacer .container { top: 125px; }
+.header-spacer .container, .header-half-spacer .container {
+    text-align: center;
+    font-size: 1.5em;
+    color: $white;
+    position: relative;
+}
+.header-button {
+    position: relative;
+    top: 5px;
+}
+.page-meta { font-size: medium; display: initial; bottom: 0; }
+.page-meta-left { text-align: left; color: $white !important; }
+.page-meta-right { text-align: right; color: $white !important; }
+
+/* navbar style when at the top of the page */
+.navbar {
+    -webkit-transition: all 0.6s ease-out;
+    -moz-transition: all 0.6s ease-out;
+    -o-transition: all 0.6s ease-out;
+    -ms-transition: all 0.6s ease-out;
+    transition: all 0.6s ease-out;
+
+    background: transparent;
+    box-shadow: none;
+    color: $white;
+}
+.navbar a { color: $white; }
+
+/* when scrolled down */
+.navbar.opaque {
+    background: linear-gradient(172deg, rgba(0,0,0,1) 0%, rgba(14,116,215,.9) 100%);
+}
+
+nav a.selected { border-bottom: 1px solid $white; }
+
+/* ======================
+    Footer Site Styles
+   ====================== */
+
+footer {  
+    background-color: $lightaccent;
+    box-shadow: 0 50vh 0 50vh $lightaccent;
+    padding-top: $itemspacing;
+    text-align: center;
+    margin-top: 2*$itemspacing;
+}
+
+footer .footer-social, footer .footer-owner {
+    margin-bottom: .5*$itemspacing;
+}
+
+/* ======================
+    Home Styles
+   ====================== */
+.header-spacer.home { height: 100vh; }
+.header-spacer.home .container { top: 30vh; }
+
+.header-spacer.home .container .social { margin-top: 2*$itemspacing; }
+.header-spacer.home .container .social a { color: #ffffff; }
+
+/* ======================
+    Blog Styles
+   ====================== */
+
+.item-meta { color: $lightprimarytext; margin-bottom: $itemspacing; }
+
+.container.post {
+    margin-bottom: $itemspacing;
+    padding-bottom: $itemspacing;
+}
+.container.post:first-child { margin-top: $itemspacing; }
+.container.post:not(:last-child) { border-bottom: 1px solid $lightaccent; }
+.post-meta:before { content: 'Posted on: '; font-weight: bold; }
+.post-tags:before { content: 'Tags: '; font-weight: bold; }
+.post-content img { max-width: 80%; }
+
+.post-tags { margin-top: $itemspacing; }
+
+ul.pager { text-align: center; list-style: none; }
+ul.pager li {display: inline;border: 1px solid black; padding: 10px; margin: 5px;}
+
+.page-navigation { text-align: center; margin-top: 2*$itemspacing; }
+
+/* ======================
+    Project Styles
+   ====================== */
+
+.container.project { 
+    margin-bottom: $itemspacing; 
+    padding-bottom: $itemspacing; 
+}
+.container.project:first-child { margin-top: $itemspacing; }
+.container.post:not(:last-child) { border-bottom: 1px soli $lightaccent; }
+.project-meta:before { content: 'Keywords: '; font-weight: bold; }
+
+.project-content { margin-top: $itemspacing; margin-bottom: $itemspacing; }
+
+/* ======================
+    Resume Styles
+   ====================== */
+
+// background information
+
+#profile-img {
+    text-align: center;
+    height: 120px;
+}
+#profile-img img {
+    position: relative;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    top: -100px;
+}
+#contact, #social-networks{
+    margin-bottom: $itemspacing;
+}
+#contact span:not(:last-child):after {
+    margin: 0 7px 0 10px;
+    color: $primarytext;
+    font-weight: 700;
+    content: "\00B7";
+}
+
+// generic section styles
+
+.resume section { 
+    margin-top: $itemspacing;
+    margin-bottom: $itemspacing;
+}
+.resume section h3 {  
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $lightaccent;
+    font-variant: small-caps;
+}
+
+.resume-item {
+    margin-bottom: $itemspacing;;
+}
+.resume-item-title {
+    font-weight: 600;
+}
+.resume-item-dates { 
+    color: $greytext; 
+    font-size: 80%;
+}
+
+.badge-list {  
+    list-style: none;
+}
+.badge-list li {
+    float: left;
+    margin-right: 7px;
+}

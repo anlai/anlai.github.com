@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+<div class="header-half-spacer">
+    <div class="container">
+        <h2>{{ page.title }}</h2>
+
+        {% if page.github_url %}
+        <a href="{{ page.github_url }}" class="btn btn-secondary header-button">
+            <i class="fab fa-github"></i>
+            See it on GitHub
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+{% if page.github_url %}
+<div class="spacer2x"></div>
+{% endif %}
+
+<div class="container project-content">
+    {{ content }}
+
+    <span class="item-meta project-meta">{{ page.keywords }}</span>
+</div>

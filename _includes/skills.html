@@ -1,0 +1,28 @@
+<section id="skills">
+    <h3>Skills</h3>
+
+    {% for skill in include.skills %}
+
+        <div class="resume-item">
+            <div class="">
+                <span class="resume-item-title ">{{ skill.name }}</span>
+                <!-- <ul class="badge-list"> -->
+                    {% assign skillExists = skill.skill | size %}
+                    {% if skillExists != 0 %}
+                        {% for s in skill.skill %}
+                            <span>{% include skill-badge.html level = s.level name = s.name %}</span>
+                        {% endfor %}
+                    {% else %}
+                        {% for keyword in skill.keywords %}
+                            <span>{% include skill-badge.html level = skill.level name = keyword %}</span>
+                        {% endfor %}
+                    {% endif %}
+                <!-- </ul> -->
+            </div>
+           
+            <div class="clearfix" ></div>
+        </div>
+
+    {% endfor %}
+
+</section>

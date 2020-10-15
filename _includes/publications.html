@@ -1,0 +1,20 @@
+<section id="publications">
+    <h3>Publications</h3>
+
+    {% for pub in include.publications %}
+        <div class="resume-item">
+            <div class="resume-item-header horizontal-spaced-comma-list">
+                <span class="resume-item-title">{{ pub.name }}</span>
+                <span class="resume-item-company"><a href="{{ pub.url }}">{{ pub.publisher }}</a></span>
+            </div>
+            <div class="resume-item-body">
+                <div class="resume-item-dates">
+                    {% include dateDisplay.html startDate = pub.releaseDate hasEnd = false %}
+                </div>
+
+                <p>{{ pub.description }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+</section>

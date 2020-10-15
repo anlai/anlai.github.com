@@ -1,0 +1,39 @@
+markdown: kramdown
+include: [_data]
+
+title: Alan Lai
+owner: Alan Lai
+email: alan.lai@outlook.com
+description: >- # this means to ignore newlines until "baseurl:"
+  I'm a Software Engineer with a strong passion for technology. Always eager to play with new technology and figure out how I can make my life easier.
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://anlai.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+social:
+  - type: github
+    url: https://github.com/anlai
+  - type: linkedin
+    url: https://www.linkedin.com/in/alan-n-lai/
+
+# Build settings
+plugins:
+  - jekyll-feed
+  
+collections:
+  projects:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      selected: "Blog"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+      selected: "Projects"
+theme: jekyll-theme-cayman

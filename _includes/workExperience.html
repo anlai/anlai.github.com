@@ -1,0 +1,22 @@
+<section id="work-experience">
+    <h3>Work Experience</h3>
+    {% for w in include.work %}
+        <div class="resume-item">
+            <div class="resume-item-header horizontal-spaced-comma-list">
+                <span class="resume-item-title">{{ w.position }}</span>
+                <span class="resume-item"><a href="{{ w.website }}">{{ w.company }}</a></span>
+            </div>
+            <div class="resume-item-body">
+                <div class="resume-item-dates">
+                    {% include dateDisplay.html startDate = w.startDate endDate = w.endDate showDuration = true %}
+                </div>
+                <p class="resume-item-summary">{{ w.summary }}</p>
+                <ul class="resume-item-list">
+                    {% for highlight in w.highlights %}
+                        <li>{{ highlight }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+</section>

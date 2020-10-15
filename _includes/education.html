@@ -1,0 +1,19 @@
+<section id="education">
+    <h3>Education</h3>
+
+    {% for degree in include.education %}
+        <div class="resume-item">
+            <div class="resume-item-header horizontal-spaced-comma-list">
+                <span class="resume-item-title">{{ degree.area }}</span>
+                <span class="resume-item-type">{{ degree.studyType }}</span>
+                <span class="resume-item-company">{{ degree.institution }}</span>
+            </div>
+            <div class="resume-item-body">
+                <div class="resume-item-dates">
+                    {% include dateDisplay.html startDate = degree.startDate endDate = degree.endDate %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+</section>

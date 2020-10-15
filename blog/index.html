@@ -1,0 +1,28 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: default
+selected: Blog
+---
+
+<div class="header-half-spacer">
+    <div class="container">
+        <h2>My Blog</h2>
+    </div>
+</div>
+
+<div class="spacer"></div>
+
+<section id="blog-posts">
+	{% for post in site.posts %}
+	<article class="container post">
+		<h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+		<span class="item-meta post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+		{{ post.excerpt }}
+
+		<div class="item-meta post-tags">{% for cat in post.categories %}{{cat}} {% endfor %}</div>
+	</article>
+	{% endfor %}
+</section>
