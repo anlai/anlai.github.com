@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Nextcloud on Azure Cleanup (Part 5)
-date: 
+date: 2020-10-14
 categories: azure nextcloud
 ---
 
