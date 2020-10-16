@@ -55,6 +55,8 @@ az webapp config appsettings set --name $basename --resource-group $rg --subscri
 
 az webapp config storage-account add --name $basename --resource-group $rg --account-name $storagename --access-key $key --share-name 'nextcloud-data' --custom-id 'data' --storage-type AzureFiles --mount-path '/var/www/html/data'
 
+az webapp config set --ftps-state FtpsOnly --name $basename --resource-group $rg --subscription $subscription
+
 ## optional 
 If($fqdn -ne 'NOT_SET') {
     az webapp config hostname add --webapp-name $basename --resource-group $rg --subscription $subscription --hostname $fqdn
