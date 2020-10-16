@@ -29,13 +29,10 @@ Ordinarily you need to have 3 things to run Nextcloud: web server, database, and
 
 MariaDB was a choice, Azure has other managed offerings for MySQL and PostgreSQL as well.  There are some settings that are specific to MariaDB security wise, so if you opt for one of the others you may need to figure out securing the connection on your own.
 
-## Guide
+## Guide Quick Links
 
-Below are the parts, that I'll update the links as I make each new post.
-
-Parts:
 1. Introduction (this post)
-1. Azure App Service Linux Setup
+1. [Azure App Service Linux Setup]({% post_url 2020-10-15-nextcloud-azure-part-2 %})
 1. Azure Database for MariaDB Setup
 1. Nextcloud Setup
 1. Securing and Cleaning up the Nextcloud Install
