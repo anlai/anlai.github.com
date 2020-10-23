@@ -33,7 +33,7 @@ MariaDB was a choice, Azure has other managed offerings for MySQL and PostgreSQL
 
 1. Introduction (this post)
 1. [Azure App Service Linux Setup]({% post_url 2020-10-15-nextcloud-azure-part-2 %})
-1. Azure Database for MariaDB Setup
+1. [Azure Database for MariaDB Setup]({% post_url 2020-10-22-nextcloud-azure-part-3 %})
 1. Nextcloud Setup
 1. Securing and Cleaning up the Nextcloud Install
 1. Summary Script for the Lazy

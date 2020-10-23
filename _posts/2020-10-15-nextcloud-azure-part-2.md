@@ -150,6 +150,6 @@ If($fqdn -ne 'NOT_SET') {
 
 1. [Introduction]({% post_url 2020-10-14-nextcloud-azure-part-1 %})
 1. Azure App Service Linux Setup (this post)
-1. Azure Database for MariaDB Setup
+1. [Azure Database for MariaDB Setup]({% post_url 2020-10-22-nextcloud-azure-part-3 %})
 1. Nextcloud Setup
 1. Securing and Cleaning up the Nextcloud Install
