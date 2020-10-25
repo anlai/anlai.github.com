@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NextCloud on Azure App Service - Part 2
+title: NextCloud on Azure - App Service Setup (Part 2)
 date: 2020-10-15
 categories: azure app-service app-service-linux docker nextcloud mysql
 ---
@@ -149,7 +149,7 @@ If($fqdn -ne 'NOT_SET') {
 ## Guide Quick Links
 
 1. [Introduction]({% post_url 2020-10-14-nextcloud-azure-part-1 %})
-1. Azure App Service Linux Setup (this post)
-1. [Azure Database for MariaDB Setup]({% post_url 2020-10-22-nextcloud-azure-part-3 %})
-1. Nextcloud Setup
-1. Securing and Cleaning up the Nextcloud Install
+1. [App Service Setup]({% post_url 2020-10-15-nextcloud-azure-part-2 %})
+1. [Database MySQL/MariaDB Setup]({% post_url 2020-10-22-nextcloud-azure-part-3 %})
+1. [Nextcloud Setup]({% post_url 2020-10-25-nextcloud-azure-part-4 %})
+1. [Final Configuration and Cleanup]({% post_url 2020-10-26-nextcloud-azure-part-5 %})

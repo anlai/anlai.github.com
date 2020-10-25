@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NextCloud on Azure (PaaS) - Part 1
+title: NextCloud on Azure - Introduction (Part 1)
 date: 2020-10-14
 categories: azure app-service app-service-linux docker nextcloud mariadb
 ---
@@ -32,8 +32,7 @@ MariaDB was a choice, Azure has other managed offerings for MySQL and PostgreSQL
 ## Guide Quick Links
 
 1. Introduction (this post)
-1. [Azure App Service Linux Setup]({% post_url 2020-10-15-nextcloud-azure-part-2 %})
-1. [Azure Database for MariaDB Setup]({% post_url 2020-10-22-nextcloud-azure-part-3 %})
-1. Nextcloud Setup
-1. Securing and Cleaning up the Nextcloud Install
-1. Summary Script for the Lazy
+1. [App Service Setup]({% post_url 2020-10-15-nextcloud-azure-part-2 %})
+1. [Database MySQL/MariaDB Setup]({% post_url 2020-10-22-nextcloud-azure-part-3 %})
+1. [Nextcloud Setup]({% post_url 2020-10-25-nextcloud-azure-part-4 %})
+1. [Final Configuration and Cleanup]({% post_url 2020-10-26-nextcloud-azure-part-5 %})

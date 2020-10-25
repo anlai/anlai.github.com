@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Nextcloud on Azure Database MySQL/MariaDB with SSL (Part 3)
+title: Nextcloud on Azure - Database MySQL/MariaDB Setup (Part 3)
 date: 2020-10-22
 categories: azure azure-database azure-mariadb
 ---
@@ -98,7 +98,7 @@ az mariadb server update --resource-group $rg --name $basename --ssl-enforcement
 
 Parts:
 1. [Introduction]({% post_url 2020-10-14-nextcloud-azure-part-1 %})
-1. [Azure App Service Linux Setup]({% post_url 2020-10-15-nextcloud-azure-part-2 %})
-1. Azure Database for MariaDB Setup (this post)
-1. Nextcloud Setup
-1. Securing and Cleaning up the Nextcloud Install
+1. [App Service Setup]({% post_url 2020-10-15-nextcloud-azure-part-2 %})
+1. [Database MySQL/MariaDB Setup]({% post_url 2020-10-22-nextcloud-azure-part-3 %})
+1. [Nextcloud Setup]({% post_url 2020-10-25-nextcloud-azure-part-4 %})
+1. [Final Configuration and Cleanup]({% post_url 2020-10-26-nextcloud-azure-part-5 %})
