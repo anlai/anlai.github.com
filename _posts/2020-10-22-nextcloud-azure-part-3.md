@@ -100,5 +100,5 @@ Parts:
 1. [Introduction]({% post_url 2020-10-14-nextcloud-azure-part-1 %})
 1. [App Service Setup]({% post_url 2020-10-15-nextcloud-azure-part-2 %})
 1. [Database MySQL/MariaDB Setup]({% post_url 2020-10-22-nextcloud-azure-part-3 %})
-1. [Nextcloud Setup]({% post_url 2020-10-25-nextcloud-azure-part-4 %})
-1. [Final Configuration and Cleanup]({% post_url 2020-10-26-nextcloud-azure-part-5 %})
+1. [Nextcloud Setup]({% post_url 2020-10-26-nextcloud-azure-part-4 %})
+1. [Final Configuration and Cleanup]({% post_url 2020-10-27-nextcloud-azure-part-5 %})
