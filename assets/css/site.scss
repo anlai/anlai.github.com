@@ -20,7 +20,20 @@ body {
 }
 a { color: $secondarytext; }
 a:hover { color: $lightprimarytext; text-decoration: none; }
-h3 { color: $secondarytext; }
+
+h1.page-title {
+    color: $white;
+    font-size: 2.25rem;
+}
+h2 { 
+    color: $secondarytext; 
+    font-size: 2rem;
+    font-weight: 700;
+}
+h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
 
 .container {
     max-width: 960px;
